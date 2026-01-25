@@ -1,0 +1,192 @@
+{
+  "identity": {
+    "name": "E1",
+    "role": "Anti-AI Designer",
+    "principles": [
+      "Fusion over Imitation",
+      "Emotion First",
+      "Content is King",
+      "Zoom In",
+      "Negative Space",
+      "Contrast"
+    ]
+  },
+  "project_context": {
+    "app_type": "fullstack_auction_platform",
+    "theme_strategy": "Hybrid",
+    "theme_rationale": "Light mode for the public catalog to build trust and clarity (Marketplace standard). Dark mode for the Hero section and Admin Dashboard to evoke 'High Performance' and 'Cockpit' feel.",
+    "emotional_archetype": "The Performance Pro",
+    "target_audience": "Car enthusiasts, serious buyers, professional sellers."
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Chivo, sans-serif",
+      "weights": ["900", "700"],
+      "usage": "Headings, Hero Text, Price Tags",
+      "letter_spacing": "tracking-tight"
+    },
+    "body": {
+      "font_family": "Manrope, sans-serif",
+      "weights": ["400", "500", "600"],
+      "usage": "Descriptions, UI Elements, Metadata",
+      "letter_spacing": "tracking-normal"
+    },
+    "installation": "Import from Google Fonts: @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@700;900&family=Manrope:wght@400;500;600&display=swap');"
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "name": "Midnight Obsidian",
+        "hex": "#0F172A",
+        "tailwind": "bg-slate-900",
+        "usage": "Primary Buttons, Header, Footer, Admin Sidebar"
+      },
+      "secondary": {
+        "name": "Chrome Silver",
+        "hex": "#F1F5F9",
+        "tailwind": "bg-slate-100",
+        "usage": "Secondary Buttons, Card Backgrounds (Hover)"
+      },
+      "accent": {
+        "name": "Redline",
+        "hex": "#DC2626",
+        "tailwind": "bg-red-600",
+        "usage": "Call to Actions (WhatsApp), Sale Badges, Error States"
+      },
+      "background": {
+        "light": "#FFFFFF",
+        "dark": "#020617",
+        "usage": "Main page background (Light), Hero background (Dark)"
+      },
+      "text": {
+        "primary": "#020617",
+        "secondary": "#64748B",
+        "inverse": "#FFFFFF"
+      }
+    },
+    "gradients": {
+      "hero_overlay": "bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent",
+      "card_hover": "hover:bg-gradient-to-br hover:from-white hover:to-slate-50"
+    }
+  },
+  "layout_system": {
+    "spacing": {
+      "base": "p-4",
+      "section": "py-24 px-6 md:px-12",
+      "container": "max-w-7xl mx-auto",
+      "card_padding": "p-6"
+    },
+    "grids": {
+      "catalog": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+      "featured": "grid grid-cols-1 md:grid-cols-12 gap-6",
+      "admin": "grid grid-cols-1 md:grid-cols-4 gap-6"
+    },
+    "border_radius": {
+      "card": "rounded-xl",
+      "button": "rounded-full",
+      "input": "rounded-lg"
+    }
+  },
+  "components": {
+    "CarCard": {
+      "style": "Minimalist, Image-First. No borders, subtle shadow on hover. Price is bold and prominent.",
+      "interaction": "Scale up 1.02x on hover. 'View Details' appears on hover.",
+      "structure": "Image (Aspect 16:9) -> Title (Chivo, Bold) -> Specs Row (Icons) -> Price & CTA Row"
+    },
+    "HeroSection": {
+      "style": "Immersive, Dark Mode. Full-width background image with heavy gradient overlay.",
+      "content": "Large Typography (Text-6xl+), Search Bar floating over the bottom edge."
+    },
+    "AdminDashboard": {
+      "style": "Dense, Functional. Sidebar navigation. Data tables with zebra striping or clean borders.",
+      "charts": "Use Recharts/Shadcn Charts. Minimalist line charts for sales trends."
+    },
+    "WhatsAppButton": {
+      "style": "Fixed bottom-right on mobile, or prominent in Car Details. Green (#25D366) or Brand Accent (#DC2626) with WhatsApp Icon."
+    }
+  },
+  "assets": {
+    "icons": {
+      "library": "lucide-react",
+      "style": "Stroke width 1.5px for elegance, 2px for UI controls."
+    },
+    "images": {
+      "hero_background": {
+        "url": "https://images.unsplash.com/photo-1758702310992-02683b964d75?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "alt": "White sports car studio lighting",
+        "category": "hero"
+      },
+      "featured_cars": [
+        {
+          "url": "https://images.unsplash.com/photo-1762314908505-24bccd998715?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Red sports car at night",
+          "category": "featured"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1762195340046-415140d8b1b2?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Porsche SUV in showroom",
+          "category": "featured"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1759166499946-9ab9e7776d41?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Red sports car garage",
+          "category": "featured"
+        }
+      ],
+      "catalog_cars": [
+        {
+          "url": "https://images.unsplash.com/photo-1764682379591-b6dc551c5a56?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Yellow Ford Bronco",
+          "category": "suv"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1763149388967-fb7dbdec26c4?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Orange Ford Bronco",
+          "category": "suv"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1707483413465-18ac0bca406b?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Vintage Bentley Front",
+          "category": "classic"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1707245361647-9fabc7abfa8f?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Green Vintage Car",
+          "category": "classic"
+        }
+      ],
+      "sellers": [
+        {
+          "url": "https://images.unsplash.com/photo-1740485863233-032dff964d0d?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Professional Salesman Tuxedo",
+          "category": "avatar"
+        },
+        {
+          "url": "https://images.unsplash.com/photo-1696992443043-7d63e521b91c?crop=entropy&cs=srgb&fm=jpg&q=85",
+          "alt": "Driver in Van",
+          "category": "avatar"
+        }
+      ]
+    }
+  },
+  "universal_guidelines": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur).",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Components MUST use named exports (export const ComponentName = ...).",
+    "Pages MUST use default exports (export default function PageName() {...}).",
+    "Use sonner for toasts.",
+    "All interactive and key informational elements MUST include a data-testid attribute."
+  ],
+  "instructions_to_main_agent": "Follow the 'Performance Pro' archetype. Build a high-trust, high-impact car auction platform. Use the provided image URLs for the initial seed data. Ensure the Admin Dashboard is dense and functional, while the Public Catalog is spacious and aspirational. Implement the 'Tetris' grid for the featured section."
+}
