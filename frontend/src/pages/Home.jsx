@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import CarCard from "@/components/CarCard";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
