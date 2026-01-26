@@ -212,6 +212,21 @@ async def init_site_settings():
 async def root():
     return {"message": "Car Auction API"}
 
+# Rota customizada para servir imagens com Content-Type correto
+@app.get("/uploads/{filename}")
+async def get_uploaded_file(filename: str):
+    file_path = UPLOAD_DIR / filename
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Arquivo não encontrado")
+    
+    # Detectar o tipo MIME correto
+    mime_type, _ = mimetypes.guess_type(str(file_path))
+    if mime_type is None:
+        mime_type = "application/octet-stream"
+    
+    return FileResponse(file_path, media_type=mime_type)
+
 @api_router.get("/store-info", response_model=StoreInfo)
 async def get_store_info():
     # Buscar WhatsApp das configurações do site
