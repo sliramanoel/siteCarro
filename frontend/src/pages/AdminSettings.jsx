@@ -42,6 +42,11 @@ export default function AdminSettings() {
         site_name: response.data.site_name,
         logo_url: response.data.logo_url || "",
         primary_color: response.data.primary_color,
+        address: response.data.address || "",
+        phone: response.data.phone || "",
+        email: response.data.email || "",
+        facebook_url: response.data.facebook_url || "",
+        instagram_url: response.data.instagram_url || "",
       });
     } catch (error) {
       console.error("Error fetching settings:", error);
