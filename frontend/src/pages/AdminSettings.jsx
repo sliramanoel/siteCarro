@@ -404,16 +404,16 @@ export default function AdminSettings() {
                   data-testid="save-contact-button"
                 >
                   <Save size={20} />
-                  {saving ? 'Salvando...' : 'Salvar Informações'}
+                  {saving ? 'Salvando...' : 'Salvar Todas as Configurações'}
                 </Button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
 
           <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
             <h3 className="font-bold text-blue-900 mb-2">💡 Dica</h3>
             <p className="text-blue-800 text-sm">
-              Após salvar as configurações, recarregue a página para ver as mudanças aplicadas em todo o site!
+              Após salvar as configurações, as mudanças serão aplicadas automaticamente em todo o site!
             </p>
           </div>
         </div>
