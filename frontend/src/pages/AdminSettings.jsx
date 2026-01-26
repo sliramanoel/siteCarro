@@ -287,7 +287,7 @@ export default function AdminSettings() {
                     id="whatsapp_message"
                     value={formData.whatsapp_message}
                     onChange={(e) => setFormData({ ...formData, whatsapp_message: e.target.value })}
-                    placeholder="Olá! Tenho interesse no {brand} {model} {year}."
+                    placeholder="Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?"
                     rows={4}
                     className="resize-none"
                     data-testid="whatsapp-message-input"
