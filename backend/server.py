@@ -164,6 +164,15 @@ async def init_admin():
         })
         logger.info("Admin user created: username=admin, password=admin123")
 
+async def init_site_settings():
+    settings_exists = await db.site_settings.find_one({"id": "site_settings"})
+    if not settings_exists:
+        default_settings = SiteSettings()
+        doc = default_settings.model_dump()
+        doc['updated_at'] = doc['updated_at'].isoformat()
+        await db.site_settings.insert_one(doc)
+        logger.info("Default site settings created")
+
 # ============ PUBLIC ROUTES ============
 
 @api_router.get("/")
