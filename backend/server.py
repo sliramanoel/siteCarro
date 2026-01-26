@@ -364,18 +364,51 @@ async def upload_image(file: UploadFile = File(...)):
         if file.content_type not in allowed_types:
             raise HTTPException(status_code=400, detail="Tipo de arquivo não permitido. Use JPEG, PNG ou WEBP")
         
-        # Gerar nome único para o arquivo
+        # Ler arquivo
+        image_data = await file.read()
+        
+        # Tentar fazer upload para o Imgur
+        imgur_client_id = os.environ.get('IMGUR_CLIENT_ID', '')
+        
+        if imgur_client_id:
+            try:
+                # Converter para base64
+                b64_image = base64.b64encode(image_data).decode('utf-8')
+                
+                # Fazer upload para Imgur
+                headers = {'Authorization': f'Client-ID {imgur_client_id}'}
+                data = {'image': b64_image, 'type': 'base64'}
+                
+                response = requests.post(
+                    'https://api.imgur.com/3/image',
+                    headers=headers,
+                    data=data,
+                    timeout=30
+                )
+                
+                if response.status_code == 200:
+                    imgur_data = response.json()
+                    if imgur_data.get('success'):
+                        image_url = imgur_data['data']['link']
+                        logger.info(f"Imagem enviada para Imgur: {image_url}")
+                        return {"url": image_url, "filename": file.filename, "provider": "imgur"}
+                
+                logger.warning(f"Imgur upload falhou: {response.status_code}")
+            
+            except Exception as imgur_error:
+                logger.error(f"Erro no upload Imgur: {str(imgur_error)}")
+        
+        # Fallback: Salvar localmente
         file_extension = file.filename.split('.')[-1]
         unique_filename = f"{uuid.uuid4()}.{file_extension}"
         file_path = UPLOAD_DIR / unique_filename
         
-        # Salvar arquivo
         with file_path.open("wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+            buffer.write(image_data)
         
-        # Retornar URL da imagem
         image_url = f"/uploads/{unique_filename}"
-        return {"url": image_url, "filename": unique_filename}
+        logger.info(f"Imagem salva localmente: {image_url}")
+        return {"url": image_url, "filename": unique_filename, "provider": "local"}
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao fazer upload: {str(e)}")
