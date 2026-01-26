@@ -52,6 +52,7 @@ export default function AdminSettings() {
         email: response.data.email || "",
         facebook_url: response.data.facebook_url || "",
         instagram_url: response.data.instagram_url || "",
+        store_whatsapp: response.data.store_whatsapp || "",
         whatsapp_message: response.data.whatsapp_message || "Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?",
         contact_title: response.data.contact_title || "Entre em Contato",
         contact_description: response.data.contact_description || "Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!",
