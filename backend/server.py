@@ -35,8 +35,8 @@ JWT_ALGORITHM = 'HS256'
 # Create the main app
 app = FastAPI()
 
-# Servir arquivos estáticos (uploads) - DEVE VIR ANTES do router
-app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
+# NÃO usar StaticFiles diretamente, criar rota customizada
+# app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 api_router = APIRouter(prefix="/api")
 
