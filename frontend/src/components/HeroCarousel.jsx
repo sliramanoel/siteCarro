@@ -70,19 +70,14 @@ export const HeroCarousel = ({ cars }) => {
             </div>
 
             {/* Título do carro */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 drop-shadow-2xl" data-testid="carousel-title">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 drop-shadow-2xl" data-testid="carousel-title">
               {currentCar.brand} {currentCar.model}
             </h1>
 
-            {/* Preço destacado com fundo */}
-            <div className="inline-block mb-6">
-              <div className="bg-white px-8 py-4 rounded-2xl shadow-2xl" data-testid="carousel-price">
-                <p className="text-sm font-semibold text-slate-600 mb-1">A partir de</p>
-                <p className="text-4xl md:text-5xl font-black text-red-600">
-                  {formatPrice(currentCar.price)}
-                </p>
-              </div>
-            </div>
+            {/* Preço */}
+            <p className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg" data-testid="carousel-price">
+              {formatPrice(currentCar.price)}
+            </p>
 
             {/* Descrição */}
             <p className="text-lg md:text-xl text-white mb-8 max-w-2xl drop-shadow-lg" data-testid="carousel-description">
