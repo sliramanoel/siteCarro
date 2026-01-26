@@ -187,11 +187,14 @@ export default function AdminSellers() {
 
       {/* Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="max-w-md" data-testid="seller-modal">
+        <DialogContent className="max-w-md" data-testid="seller-modal" aria-describedby="seller-modal-description">
           <DialogHeader>
             <DialogTitle className="text-2xl font-black">
               {editingSeller ? 'Editar Vendedor' : 'Adicionar Vendedor'}
             </DialogTitle>
+            <p id="seller-modal-description" className="sr-only">
+              Formulário para {editingSeller ? 'editar' : 'adicionar'} informações de um vendedor no sistema
+            </p>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
