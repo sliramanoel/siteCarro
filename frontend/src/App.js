@@ -7,24 +7,29 @@ import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import AdminCars from "@/pages/AdminCars";
 import AdminSellers from "@/pages/AdminSellers";
+import AdminSettings from "@/pages/AdminSettings";
 import { Toaster } from "@/components/ui/sonner";
+import { SettingsProvider } from "@/contexts/SettingsContext";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/car/:id" element={<CarDetails />} />
-          <Route path="/equipe" element={<Team />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/cars" element={<AdminCars />} />
-          <Route path="/admin/sellers" element={<AdminSellers />} />
-        </Routes>
-      </BrowserRouter>
-      <Toaster position="top-right" />
-    </div>
+    <SettingsProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/car/:id" element={<CarDetails />} />
+            <Route path="/equipe" element={<Team />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/cars" element={<AdminCars />} />
+            <Route path="/admin/sellers" element={<AdminSellers />} />
+            <Route path="/admin/settings" element={<AdminSettings />} />
+          </Routes>
+        </BrowserRouter>
+        <Toaster position="top-right" />
+      </div>
+    </SettingsProvider>
   );
 }
 
