@@ -70,8 +70,23 @@ export default function Home() {
       {/* Hero Carousel */}
       <HeroCarousel cars={featuredCars} />
 
+      {/* Search Bar Section */}
+      <div className="bg-slate-100 py-8 px-6">
+        <div className="max-w-4xl mx-auto relative">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" size={24} />
+          <Input
+            type="text"
+            placeholder="Buscar por marca, modelo ou ano..."
+            className="pl-12 h-14 text-lg rounded-full search-input bg-white"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            data-testid="search-input"
+          />
+        </div>
+      </div>
+
       {/* Cars Catalog */}
-      <div className="max-w-7xl mx-auto px-6 py-24">
+      <div className="max-w-7xl mx-auto px-6 py-24" id="catalog-section">
         <div className="flex justify-between items-center mb-12">
           <div>
             <h2 className="text-4xl font-black text-slate-900 mb-2" data-testid="catalog-title">
