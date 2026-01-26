@@ -104,32 +104,32 @@ export const HeroCarousel = ({ cars }) => {
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white p-4 rounded-full transition-all z-20 shadow-xl"
+            className="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white p-2 md:p-4 rounded-full transition-all z-20 shadow-xl"
             data-testid="carousel-prev"
           >
-            <ChevronLeft size={32} className="text-slate-900" />
+            <ChevronLeft size={20} className="md:w-8 md:h-8 text-slate-900" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white p-4 rounded-full transition-all z-20 shadow-xl"
+            className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white p-2 md:p-4 rounded-full transition-all z-20 shadow-xl"
             data-testid="carousel-next"
           >
-            <ChevronRight size={32} className="text-slate-900" />
+            <ChevronRight size={20} className="md:w-8 md:h-8 text-slate-900" />
           </button>
         </>
       )}
 
       {/* Indicators */}
       {cars.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-20" data-testid="carousel-indicators">
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3 z-20" data-testid="carousel-indicators">
           {cars.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`h-3 rounded-full transition-all ${
+              className={`h-2 md:h-3 rounded-full transition-all ${
                 index === currentIndex
-                  ? 'bg-white w-12'
-                  : 'bg-white/50 hover:bg-white/70 w-3'
+                  ? 'bg-white w-8 md:w-12'
+                  : 'bg-white/50 hover:bg-white/70 w-2 md:w-3'
               }`}
               data-testid={`carousel-indicator-${index}`}
             />
