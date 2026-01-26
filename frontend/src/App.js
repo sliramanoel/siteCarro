@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "@/App.css";
 import Home from "@/pages/Home";
 import CarDetails from "@/pages/CarDetails";
+import Team from "@/pages/Team";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminDashboard from "@/pages/AdminDashboard";
 import AdminCars from "@/pages/AdminCars";
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/car/:id" element={<CarDetails />} />
+          <Route path="/equipe" element={<Team />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/cars" element={<AdminCars />} />

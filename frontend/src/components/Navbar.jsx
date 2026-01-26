@@ -10,8 +10,11 @@ export const Navbar = () => {
           <span className="text-2xl font-black tracking-tight">AutoLeilão</span>
         </Link>
         <div className="flex items-center gap-6">
-          <Link to="/" className="hover:text-slate-300 transition-colors" data-testid="nav-home">
+          <Link to="/" className="hover:text-slate-300 transition-colors font-semibold" data-testid="nav-home">
             Início
+          </Link>
+          <Link to="/equipe" className="hover:text-slate-300 transition-colors font-semibold" data-testid="nav-team">
+            Equipe
           </Link>
           <Link
             to="/admin/login"
