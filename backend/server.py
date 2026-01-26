@@ -56,6 +56,7 @@ class SiteSettings(BaseModel):
     facebook_url: str = ""
     instagram_url: str = ""
     store_whatsapp: str = ""
+    imgur_client_id: str = ""
     whatsapp_message: str = "Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?"
     contact_title: str = "Entre em Contato"
     contact_description: str = "Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!"
