@@ -190,6 +190,104 @@ export default function AdminSettings() {
             </div>
           </form>
 
+          <div className="mt-8 border-t pt-8">
+            <h2 className="text-2xl font-black text-slate-900 mb-6">Informações de Contato</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Label htmlFor="address" className="text-lg font-bold mb-2 block">
+                  Endereço Físico
+                </Label>
+                <Input
+                  id="address"
+                  value={formData.address}
+                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  placeholder="Rua Exemplo, 123 - Bairro - Cidade/UF"
+                  className="h-12"
+                  data-testid="address-input"
+                />
+                <p className="text-sm text-slate-500 mt-2">
+                  Endereço que aparecerá no rodapé do site
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="phone" className="text-lg font-bold mb-2 block">
+                    Telefone
+                  </Label>
+                  <Input
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="(11) 1234-5678"
+                    className="h-12"
+                    data-testid="phone-input"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email" className="text-lg font-bold mb-2 block">
+                    E-mail
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="contato@exemplo.com"
+                    className="h-12"
+                    data-testid="email-input"
+                  />
+                </div>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Redes Sociais</h3>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="facebook_url" className="font-bold mb-2 block">
+                      Facebook
+                    </Label>
+                    <Input
+                      id="facebook_url"
+                      value={formData.facebook_url}
+                      onChange={(e) => setFormData({ ...formData, facebook_url: e.target.value })}
+                      placeholder="https://facebook.com/suapagina"
+                      className="h-12"
+                      data-testid="facebook-input"
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="instagram_url" className="font-bold mb-2 block">
+                      Instagram
+                    </Label>
+                    <Input
+                      id="instagram_url"
+                      value={formData.instagram_url}
+                      onChange={(e) => setFormData({ ...formData, instagram_url: e.target.value })}
+                      placeholder="https://instagram.com/seuperfil"
+                      className="h-12"
+                      data-testid="instagram-input"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-4 pt-6">
+                <Button
+                  type="submit"
+                  disabled={saving}
+                  className="btn-primary px-8 py-6 text-lg rounded-full font-bold flex items-center gap-2"
+                  data-testid="save-contact-button"
+                >
+                  <Save size={20} />
+                  {saving ? 'Salvando...' : 'Salvar Informações'}
+                </Button>
+              </div>
+            </form>
+          </div>
+
           <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
             <h3 className="font-bold text-blue-900 mb-2">💡 Dica</h3>
             <p className="text-blue-800 text-sm">
