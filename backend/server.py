@@ -208,6 +208,32 @@ async def get_public_settings():
         settings['updated_at'] = datetime.fromisoformat(settings['updated_at'])
     return SiteSettings(**settings)
 
+@api_router.get("/cars/featured", response_model=List[CarPublic])
+async def get_featured_cars():
+    cars = await db.cars.find({"featured": True, "status": "available"}, {"_id": 0}).to_list(1000)
+    
+    result = []
+    for car in cars:
+        if isinstance(car.get('created_at'), str):
+            car['created_at'] = datetime.fromisoformat(car['created_at'])
+        
+        car_public = CarPublic(
+            id=car['id'],
+            brand=car['brand'],
+            model=car['model'],
+            year=car['year'],
+            km=car['km'],
+            price=car['price'],
+            description=car['description'],
+            images=car['images'],
+            status=car['status'],
+            featured=car.get('featured', False),
+            created_at=car['created_at']
+        )
+        result.append(car_public)
+    
+    return result
+
 @api_router.get("/cars", response_model=List[CarPublic])
 async def get_cars(status: Optional[str] = None):
     query = {}
