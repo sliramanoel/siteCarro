@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Car, Users, LayoutDashboard, LogOut } from "lucide-react";
+import { Car, Users, LayoutDashboard, LogOut, Settings } from "lucide-react";
 import { toast } from "sonner";
 
 export const AdminSidebar = () => {
@@ -17,6 +17,7 @@ export const AdminSidebar = () => {
     { path: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard', testId: 'sidebar-dashboard' },
     { path: '/admin/cars', icon: Car, label: 'Carros', testId: 'sidebar-cars' },
     { path: '/admin/sellers', icon: Users, label: 'Vendedores', testId: 'sidebar-sellers' },
+    { path: '/admin/settings', icon: Settings, label: 'Configurações', testId: 'sidebar-settings' },
   ];
 
   return (
