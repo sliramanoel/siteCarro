@@ -93,7 +93,7 @@ export default function Home() {
               Catálogo de Veículos
             </h2>
             <p className="text-slate-600" data-testid="catalog-subtitle">
-              {filteredCars.length} veículos disponíveis
+              {filteredCars.length} veículo{filteredCars.length !== 1 ? 's' : ''} no catálogo
             </p>
           </div>
         </div>
