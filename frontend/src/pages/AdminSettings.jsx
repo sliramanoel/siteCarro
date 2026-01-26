@@ -286,6 +286,28 @@ export default function AdminSettings() {
               <div className="border-t pt-6">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">Mensagem WhatsApp</h3>
                 
+                <div className="mb-6">
+                  <Label htmlFor="store_whatsapp" className="font-bold mb-2 block">
+                    WhatsApp da Loja
+                  </Label>
+                  <Input
+                    id="store_whatsapp"
+                    value={formData.store_whatsapp}
+                    onChange={(e) => setFormData({ ...formData, store_whatsapp: e.target.value })}
+                    placeholder="5511999999999"
+                    className="h-12"
+                    data-testid="store-whatsapp-input"
+                  />
+                  <p className="text-sm text-slate-500 mt-2">
+                    Número com código do país e DDD (sem espaços ou caracteres especiais). Ex: 5511999999999
+                  </p>
+                  <div className="mt-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <p className="text-sm text-yellow-900">
+                      ⚠️ <strong>Importante:</strong> Este é o número que receberá todas as mensagens dos clientes interessados nos veículos.
+                    </p>
+                  </div>
+                </div>
+                
                 <div className="space-y-4 mb-6">
                   <div>
                     <Label htmlFor="contact_title" className="font-bold mb-2 block">
