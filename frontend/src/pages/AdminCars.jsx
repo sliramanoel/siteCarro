@@ -326,18 +326,6 @@ export default function AdminCars() {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="price">Preço (R$)</Label>
-                <Input
-                  id="price"
-                  type="number"
-                  step="0.01"
-                  value={formData.price}
-                  onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
-                  required
-                  data-testid="price-input"
-                />
-              </div>
-              <div>
                 <Label htmlFor="status">Status</Label>
                 <Select
                   value={formData.status}
@@ -353,6 +341,20 @@ export default function AdminCars() {
                     <SelectItem value="reserved">Reservado</SelectItem>
                   </SelectContent>
                 </Select>
+              </div>
+
+              <div className="flex items-center gap-3 pt-6">
+                <input
+                  type="checkbox"
+                  id="featured"
+                  checked={formData.featured}
+                  onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
+                  className="w-5 h-5 rounded border-slate-300"
+                  data-testid="featured-checkbox"
+                />
+                <Label htmlFor="featured" className="font-bold cursor-pointer">
+                  ⭐ Destaque no Banner Principal
+                </Label>
               </div>
             </div>
 
