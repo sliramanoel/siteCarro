@@ -63,9 +63,6 @@ export const Footer = () => {
               <Link to="/equipe" className="block text-white/70 hover:text-white transition-colors" data-testid="footer-link-team">
                 Nossa Equipe
               </Link>
-              <Link to="/admin/login" className="block text-white/70 hover:text-white transition-colors" data-testid="footer-link-admin">
-                Área Admin
-              </Link>
             </div>
             
             {/* Social Media */}
