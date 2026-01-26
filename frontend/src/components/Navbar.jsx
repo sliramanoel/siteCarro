@@ -5,6 +5,13 @@ import { useSettings } from "@/contexts/SettingsContext";
 export const Navbar = () => {
   const { settings } = useSettings();
 
+  const scrollToCatalog = () => {
+    const catalogSection = document.getElementById('catalog-section');
+    if (catalogSection) {
+      catalogSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="navbar py-4 px-6 shadow-md sticky top-0 z-50" data-testid="main-navbar">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -27,6 +34,13 @@ export const Navbar = () => {
           <Link to="/" className="hover:text-slate-300 transition-colors font-semibold" data-testid="nav-home">
             Início
           </Link>
+          <button 
+            onClick={scrollToCatalog}
+            className="hover:text-slate-300 transition-colors font-semibold" 
+            data-testid="nav-catalog"
+          >
+            Catálogo
+          </button>
           <Link to="/equipe" className="hover:text-slate-300 transition-colors font-semibold" data-testid="nav-team">
             Equipe
           </Link>
