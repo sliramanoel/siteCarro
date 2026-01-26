@@ -31,6 +31,19 @@ api_router = APIRouter(prefix="/api")
 
 # ============ MODELS ============
 
+class SiteSettings(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = "site_settings"
+    site_name: str = "AutoLeilão"
+    logo_url: str = ""
+    primary_color: str = "#DC2626"
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class SiteSettingsUpdate(BaseModel):
+    site_name: Optional[str] = None
+    logo_url: Optional[str] = None
+    primary_color: Optional[str] = None
+
 class Seller(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
