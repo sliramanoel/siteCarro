@@ -101,6 +101,7 @@ class CarPublic(BaseModel):
     description: str
     images: List[str]
     status: str
+    featured: bool
     created_at: datetime
 
 class CarCreate(BaseModel):
