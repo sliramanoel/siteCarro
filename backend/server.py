@@ -225,7 +225,14 @@ async def get_uploaded_file(filename: str):
     if mime_type is None:
         mime_type = "application/octet-stream"
     
-    return FileResponse(file_path, media_type=mime_type)
+    return FileResponse(
+        file_path, 
+        media_type=mime_type,
+        headers={
+            "Cache-Control": "public, max-age=31536000",
+            "Access-Control-Allow-Origin": "*"
+        }
+    )
 
 @api_router.get("/store-info", response_model=StoreInfo)
 async def get_store_info():
