@@ -285,6 +285,7 @@ async def get_car(car_id: str):
         description=car['description'],
         images=car['images'],
         status=car['status'],
+        featured=car.get('featured', False),
         created_at=car['created_at']
     )
 
