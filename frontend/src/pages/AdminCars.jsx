@@ -203,6 +203,7 @@ export default function AdminCars() {
                   <th className="px-6 py-4 text-left font-bold">KM</th>
                   <th className="px-6 py-4 text-left font-bold">Preço</th>
                   <th className="px-6 py-4 text-left font-bold">Status</th>
+                  <th className="px-6 py-4 text-left font-bold">Destaque</th>
                   <th className="px-6 py-4 text-left font-bold">Vendedor</th>
                   <th className="px-6 py-4 text-left font-bold">Ações</th>
                 </tr>
