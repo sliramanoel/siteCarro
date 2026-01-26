@@ -216,6 +216,7 @@ export default function CarDetails() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
