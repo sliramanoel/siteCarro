@@ -1,4 +1,4 @@
-import { Calendar, Gauge, DollarSign } from "lucide-react";
+import { Calendar, Gauge } from "lucide-react";
 
 export const CarCard = ({ car, onClick }) => {
   const formatPrice = (price) => {

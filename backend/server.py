@@ -63,8 +63,21 @@ class Car(BaseModel):
     description: str
     images: List[str] = []
     seller_id: str
-    status: str = "available"  # available, sold, reserved
+    status: str = "available"
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class CarPublic(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str
+    brand: str
+    model: str
+    year: int
+    km: int
+    price: float
+    description: str
+    images: List[str]
+    status: str
+    created_at: datetime
 
 class CarCreate(BaseModel):
     brand: str
@@ -110,6 +123,10 @@ class CarWithSeller(BaseModel):
     created_at: datetime
     seller: Optional[Seller] = None
 
+class StoreInfo(BaseModel):
+    whatsapp: str
+    name: str = "AutoLeilão"
+
 # ============ HELPER FUNCTIONS ============
 
 def create_access_token(username: str) -> str:
@@ -140,7 +157,12 @@ async def init_admin():
 async def root():
     return {"message": "Car Auction API"}
 
-@api_router.get("/cars", response_model=List[CarWithSeller])
+@api_router.get("/store-info", response_model=StoreInfo)
+async def get_store_info():
+    whatsapp = os.environ.get('WHATSAPP_LOJA', '5511999999999')
+    return StoreInfo(whatsapp=whatsapp, name="AutoLeilão")
+
+@api_router.get("/cars", response_model=List[CarPublic])
 async def get_cars(status: Optional[str] = None):
     query = {}
     if status:
@@ -148,23 +170,29 @@ async def get_cars(status: Optional[str] = None):
     
     cars = await db.cars.find(query, {"_id": 0}).to_list(1000)
     
-    # Convert datetime strings back to datetime objects and fetch seller info
     result = []
     for car in cars:
         if isinstance(car.get('created_at'), str):
             car['created_at'] = datetime.fromisoformat(car['created_at'])
         
-        # Fetch seller info
-        seller = await db.sellers.find_one({"id": car.get("seller_id")}, {"_id": 0})
-        if seller and isinstance(seller.get('created_at'), str):
-            seller['created_at'] = datetime.fromisoformat(seller['created_at'])
-        
-        car_with_seller = CarWithSeller(**car, seller=Seller(**seller) if seller else None)
-        result.append(car_with_seller)
+        # Remove seller_id from public view
+        car_public = CarPublic(
+            id=car['id'],
+            brand=car['brand'],
+            model=car['model'],
+            year=car['year'],
+            km=car['km'],
+            price=car['price'],
+            description=car['description'],
+            images=car['images'],
+            status=car['status'],
+            created_at=car['created_at']
+        )
+        result.append(car_public)
     
     return result
 
-@api_router.get("/cars/{car_id}", response_model=CarWithSeller)
+@api_router.get("/cars/{car_id}", response_model=CarPublic)
 async def get_car(car_id: str):
     car = await db.cars.find_one({"id": car_id}, {"_id": 0})
     if not car:
@@ -173,12 +201,19 @@ async def get_car(car_id: str):
     if isinstance(car.get('created_at'), str):
         car['created_at'] = datetime.fromisoformat(car['created_at'])
     
-    # Fetch seller info
-    seller = await db.sellers.find_one({"id": car.get("seller_id")}, {"_id": 0})
-    if seller and isinstance(seller.get('created_at'), str):
-        seller['created_at'] = datetime.fromisoformat(seller['created_at'])
-    
-    return CarWithSeller(**car, seller=Seller(**seller) if seller else None)
+    # Return without seller info for public view
+    return CarPublic(
+        id=car['id'],
+        brand=car['brand'],
+        model=car['model'],
+        year=car['year'],
+        km=car['km'],
+        price=car['price'],
+        description=car['description'],
+        images=car['images'],
+        status=car['status'],
+        created_at=car['created_at']
+    )
 
 # ============ AUTH ROUTES ============
 

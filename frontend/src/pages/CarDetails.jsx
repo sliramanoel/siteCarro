@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
-import { Calendar, Gauge, User, Phone, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { Calendar, Gauge, ChevronLeft, ChevronRight, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -12,11 +12,13 @@ export default function CarDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
+  const [storeInfo, setStoreInfo] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchCarDetails();
+    fetchStoreInfo();
   }, [id]);
 
   const fetchCarDetails = async () => {
@@ -27,6 +29,15 @@ export default function CarDetails() {
       console.error("Error fetching car details:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchStoreInfo = async () => {
+    try {
+      const response = await axios.get(`${API}/store-info`);
+      setStoreInfo(response.data);
+    } catch (error) {
+      console.error("Error fetching store info:", error);
     }
   };
 
@@ -42,9 +53,9 @@ export default function CarDetails() {
   };
 
   const handleWhatsAppClick = () => {
-    if (car && car.seller) {
+    if (car && storeInfo) {
       const message = `Olá! Tenho interesse no ${car.brand} ${car.model} ${car.year}.`;
-      const whatsappUrl = `https://wa.me/${car.seller.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/${storeInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     }
   };
@@ -182,21 +193,16 @@ export default function CarDetails() {
               </p>
             </div>
 
-            {car.seller && (
-              <div className="bg-slate-900 text-white p-6 rounded-xl mb-8" data-testid="seller-info">
-                <h3 className="text-xl font-black mb-4">Informações do Vendedor</h3>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2" data-testid="seller-name">
-                    <User size={18} />
-                    <span>{car.seller.name}</span>
-                  </div>
-                  <div className="flex items-center gap-2" data-testid="seller-phone">
-                    <Phone size={18} />
-                    <span>{car.seller.phone}</span>
-                  </div>
-                </div>
+            <div className="bg-slate-900 text-white p-6 rounded-xl mb-6" data-testid="contact-info">
+              <h3 className="text-xl font-black mb-4">Entre em Contato</h3>
+              <p className="text-white/80 mb-4">
+                Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!
+              </p>
+              <div className="flex items-center gap-2">
+                <Phone size={18} />
+                <span>{storeInfo?.whatsapp || '(11) 99999-9999'}</span>
               </div>
-            )}
+            </div>
 
             <button
               onClick={handleWhatsAppClick}
