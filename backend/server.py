@@ -57,6 +57,8 @@ class SiteSettingsUpdate(BaseModel):
     facebook_url: Optional[str] = None
     instagram_url: Optional[str] = None
     whatsapp_message: Optional[str] = None
+    contact_title: Optional[str] = None
+    contact_description: Optional[str] = None
 
 class Seller(BaseModel):
     model_config = ConfigDict(extra="ignore")
