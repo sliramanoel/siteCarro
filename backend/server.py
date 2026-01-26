@@ -203,7 +203,15 @@ async def root():
 
 @api_router.get("/store-info", response_model=StoreInfo)
 async def get_store_info():
-    whatsapp = os.environ.get('WHATSAPP_LOJA', '5511999999999')
+    # Buscar WhatsApp das configurações do site
+    settings = await db.site_settings.find_one({"id": "site_settings"}, {"_id": 0})
+    
+    # Se tem WhatsApp configurado no banco, usar ele, senão usar do .env
+    if settings and settings.get('store_whatsapp'):
+        whatsapp = settings['store_whatsapp']
+    else:
+        whatsapp = os.environ.get('WHATSAPP_LOJA', '5511999999999')
+    
     return StoreInfo(whatsapp=whatsapp, name="AutoLeilão")
 
 @api_router.get("/settings", response_model=SiteSettings)
