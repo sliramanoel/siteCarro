@@ -283,6 +283,44 @@ export default function AdminSettings() {
 
               <div className="border-t pt-6">
                 <h3 className="text-xl font-bold text-slate-900 mb-4">Mensagem WhatsApp</h3>
+                
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <Label htmlFor="contact_title" className="font-bold mb-2 block">
+                      Título da Seção de Contato
+                    </Label>
+                    <Input
+                      id="contact_title"
+                      value={formData.contact_title}
+                      onChange={(e) => setFormData({ ...formData, contact_title: e.target.value })}
+                      placeholder="Entre em Contato"
+                      className="h-12"
+                      data-testid="contact-title-input"
+                    />
+                    <p className="text-sm text-slate-500 mt-2">
+                      Título que aparece na caixa de contato da página de detalhes
+                    </p>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="contact_description" className="font-bold mb-2 block">
+                      Descrição do Contato
+                    </Label>
+                    <Textarea
+                      id="contact_description"
+                      value={formData.contact_description}
+                      onChange={(e) => setFormData({ ...formData, contact_description: e.target.value })}
+                      placeholder="Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!"
+                      rows={2}
+                      className="resize-none"
+                      data-testid="contact-description-input"
+                    />
+                    <p className="text-sm text-slate-500 mt-2">
+                      Texto explicativo que aparece abaixo do título
+                    </p>
+                  </div>
+                </div>
+                
                 <div>
                   <Label htmlFor="whatsapp_message" className="font-bold mb-2 block">
                     Mensagem de Contato
