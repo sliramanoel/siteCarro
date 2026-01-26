@@ -192,25 +192,25 @@ export default function AdminSettings() {
               </div>
             </div>
 
-          <div className="mt-8 border-t pt-8">
-            <h2 className="text-2xl font-black text-slate-900 mb-6">Informações de Contato</h2>
-            <div className="space-y-6">
-              <div>
-                <Label htmlFor="address" className="text-lg font-bold mb-2 block">
-                  Endereço Físico
-                </Label>
-                <Input
-                  id="address"
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                  placeholder="Rua Exemplo, 123 - Bairro - Cidade/UF"
-                  className="h-12"
-                  data-testid="address-input"
-                />
-                <p className="text-sm text-slate-500 mt-2">
-                  Endereço que aparecerá no rodapé do site
-                </p>
-              </div>
+            <div className="mt-8 border-t pt-8">
+              <h2 className="text-2xl font-black text-slate-900 mb-6">Informações de Contato</h2>
+              <div className="space-y-6">
+                <div>
+                  <Label htmlFor="address" className="text-lg font-bold mb-2 block">
+                    Endereço Físico
+                  </Label>
+                  <Input
+                    id="address"
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    placeholder="Rua Exemplo, 123 - Bairro - Cidade/UF"
+                    className="h-12"
+                    data-testid="address-input"
+                  />
+                  <p className="text-sm text-slate-500 mt-2">
+                    Endereço que aparecerá no rodapé do site
+                  </p>
+                </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
