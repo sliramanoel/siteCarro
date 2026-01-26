@@ -192,22 +192,9 @@ export default function AdminSettings() {
               </div>
             </div>
 
-            <div className="flex gap-4 pt-6">
-              <Button
-                type="submit"
-                disabled={saving}
-                className="btn-primary px-8 py-6 text-lg rounded-full font-bold flex items-center gap-2"
-                data-testid="save-settings-button"
-              >
-                <Save size={20} />
-                {saving ? 'Salvando...' : 'Salvar Configurações'}
-              </Button>
-            </div>
-          </form>
-
           <div className="mt-8 border-t pt-8">
             <h2 className="text-2xl font-black text-slate-900 mb-6">Informações de Contato</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-6">
               <div>
                 <Label htmlFor="address" className="text-lg font-bold mb-2 block">
                   Endereço Físico
