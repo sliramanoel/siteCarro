@@ -116,6 +116,10 @@ export default function AdminCars() {
     setFormData({ ...formData, images: newImages });
   };
 
+  const handleImagesChange = (newImages) => {
+    setFormData({ ...formData, images: newImages });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
