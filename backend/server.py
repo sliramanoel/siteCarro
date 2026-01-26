@@ -126,6 +126,7 @@ class CarUpdate(BaseModel):
     images: Optional[List[str]] = None
     seller_id: Optional[str] = None
     status: Optional[str] = None
+    featured: Optional[bool] = None
 
 class AdminLogin(BaseModel):
     username: str
