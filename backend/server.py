@@ -258,6 +258,7 @@ async def get_cars(status: Optional[str] = None):
             description=car['description'],
             images=car['images'],
             status=car['status'],
+            featured=car.get('featured', False),
             created_at=car['created_at']
         )
         result.append(car_public)
