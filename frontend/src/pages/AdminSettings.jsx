@@ -276,6 +276,38 @@ export default function AdminSettings() {
                 </div>
               </div>
 
+              <div className="border-t pt-6">
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Mensagem WhatsApp</h3>
+                <div>
+                  <Label htmlFor="whatsapp_message" className="font-bold mb-2 block">
+                    Mensagem de Contato
+                  </Label>
+                  <Textarea
+                    id="whatsapp_message"
+                    value={formData.whatsapp_message}
+                    onChange={(e) => setFormData({ ...formData, whatsapp_message: e.target.value })}
+                    placeholder="Olá! Tenho interesse no {brand} {model} {year}."
+                    rows={4}
+                    className="resize-none"
+                    data-testid="whatsapp-message-input"
+                  />
+                  <p className="text-sm text-slate-500 mt-2">
+                    Use as variáveis: <code className="bg-slate-100 px-2 py-1 rounded">{"{brand}"}</code>,{" "}
+                    <code className="bg-slate-100 px-2 py-1 rounded">{"{model}"}</code>,{" "}
+                    <code className="bg-slate-100 px-2 py-1 rounded">{"{year}"}</code> para personalizar a mensagem
+                  </p>
+                  <div className="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                    <p className="text-sm text-green-900 font-semibold mb-2">📱 Exemplo:</p>
+                    <p className="text-sm text-green-800">
+                      {formData.whatsapp_message
+                        .replace("{brand}", "Porsche")
+                        .replace("{model}", "911 Carrera")
+                        .replace("{year}", "2022")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex gap-4 pt-6">
                 <Button
                   type="submit"
