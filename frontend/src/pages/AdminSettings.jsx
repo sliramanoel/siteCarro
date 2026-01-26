@@ -15,6 +15,7 @@ const API = `${BACKEND_URL}/api`;
 
 export default function AdminSettings() {
   const navigate = useNavigate();
+  const { refreshSettings } = useSettings();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
