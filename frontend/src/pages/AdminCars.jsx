@@ -235,6 +235,13 @@ export default function AdminCars() {
                         {car.status === 'available' ? 'Disponível' : car.status === 'sold' ? 'Vendido' : 'Reservado'}
                       </span>
                     </td>
+                    <td className="px-6 py-4 text-center">
+                      {car.featured ? (
+                        <span className="text-2xl" title="Em destaque">⭐</span>
+                      ) : (
+                        <span className="text-slate-300">-</span>
+                      )}
+                    </td>
                     <td className="px-6 py-4">{car.seller?.name || '-'}</td>
                     <td className="px-6 py-4">
                       <div className="flex gap-2">
