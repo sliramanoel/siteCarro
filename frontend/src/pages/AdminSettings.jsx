@@ -24,6 +24,7 @@ export default function AdminSettings() {
     email: "",
     facebook_url: "",
     instagram_url: "",
+    whatsapp_message: "",
   });
 
   useEffect(() => {
