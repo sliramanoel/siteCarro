@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CarCard from "@/components/CarCard";
+import HeroCarousel from "@/components/HeroCarousel";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
@@ -12,6 +13,7 @@ const API = `${BACKEND_URL}/api`;
 
 export default function Home() {
   const [cars, setCars] = useState([]);
+  const [featuredCars, setFeaturedCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
@@ -19,6 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchCars();
+    fetchFeaturedCars();
   }, []);
 
   useEffect(() => {
@@ -47,6 +50,15 @@ export default function Home() {
     }
   };
 
+  const fetchFeaturedCars = async () => {
+    try {
+      const response = await axios.get(`${API}/cars/featured`);
+      setFeaturedCars(response.data);
+    } catch (error) {
+      console.error("Error fetching featured cars:", error);
+    }
+  };
+
   const handleCarClick = (carId) => {
     navigate(`/car/${carId}`);
   };
@@ -55,34 +67,8 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navbar />
 
-      {/* Hero Section */}
-      <div
-        className="hero-section"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1758702310992-02683b964d75?crop=entropy&cs=srgb&fm=jpg&q=85')`,
-        }}
-      >
-        <div className="hero-overlay"></div>
-        <div className="relative z-10 text-center px-6 max-w-4xl">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6" data-testid="hero-title">
-            Encontre Seu Carro Ideal
-          </h1>
-          <p className="text-lg md:text-xl text-white/90 mb-8" data-testid="hero-subtitle">
-            Os melhores veículos selecionados para você
-          </p>
-          <div className="max-w-2xl mx-auto relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" size={24} />
-            <Input
-              type="text"
-              placeholder="Buscar por marca, modelo ou ano..."
-              className="pl-12 h-14 text-lg rounded-full search-input"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              data-testid="search-input"
-            />
-          </div>
-        </div>
-      </div>
+      {/* Hero Carousel */}
+      <HeroCarousel cars={featuredCars} />
 
       {/* Cars Catalog */}
       <div className="max-w-7xl mx-auto px-6 py-24">
