@@ -12,6 +12,11 @@ export const CarCard = ({ car, onClick }) => {
     return new Intl.NumberFormat('pt-BR').format(km) + ' km';
   };
 
+  const handleImageError = (e) => {
+    console.error('Erro ao carregar imagem:', car.images[0]);
+    e.target.src = 'https://via.placeholder.com/400x240?text=Erro+ao+Carregar';
+  };
+
   return (
     <div
       className="car-card bg-white rounded-xl overflow-hidden shadow-md"
@@ -23,6 +28,7 @@ export const CarCard = ({ car, onClick }) => {
           src={car.images[0] || 'https://via.placeholder.com/400x240?text=No+Image'}
           alt={`${car.brand} ${car.model}`}
           className="w-full h-60 object-cover"
+          onError={handleImageError}
           data-testid={`car-image-${car.id}`}
         />
       </div>
