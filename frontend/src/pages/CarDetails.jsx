@@ -13,6 +13,7 @@ const API = `${BACKEND_URL}/api`;
 export default function CarDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { settings } = useSettings();
   const [car, setCar] = useState(null);
   const [storeInfo, setStoreInfo] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
