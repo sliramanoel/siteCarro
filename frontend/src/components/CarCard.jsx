@@ -17,13 +17,27 @@ export const CarCard = ({ car, onClick }) => {
     e.target.src = 'https://via.placeholder.com/400x240?text=Erro+ao+Carregar';
   };
 
+  const getStatusConfig = (status) => {
+    switch (status) {
+      case 'sold':
+        return { label: 'Vendido', bg: 'bg-red-600', text: 'text-white' };
+      case 'reserved':
+        return { label: 'Reservado', bg: 'bg-yellow-500', text: 'text-black' };
+      case 'available':
+      default:
+        return { label: 'Disponível', bg: 'bg-green-600', text: 'text-white' };
+    }
+  };
+
+  const statusConfig = getStatusConfig(car.status);
+
   return (
     <div
       className="car-card bg-white rounded-xl overflow-hidden shadow-md"
       onClick={onClick}
       data-testid={`car-card-${car.id}`}
     >
-      <div className="overflow-hidden">
+      <div className="relative overflow-hidden">
         <img
           src={car.images[0] || 'https://via.placeholder.com/400x240?text=No+Image'}
           alt={`${car.brand} ${car.model}`}
@@ -31,6 +45,12 @@ export const CarCard = ({ car, onClick }) => {
           onError={handleImageError}
           data-testid={`car-image-${car.id}`}
         />
+        <div 
+          className={`absolute top-3 left-3 px-3 py-1 rounded-full text-sm font-bold ${statusConfig.bg} ${statusConfig.text}`}
+          data-testid={`car-status-${car.id}`}
+        >
+          {statusConfig.label}
+        </div>
       </div>
       <div className="p-6">
         <h3 className="text-2xl font-black text-slate-900 mb-2" data-testid={`car-title-${car.id}`}>
