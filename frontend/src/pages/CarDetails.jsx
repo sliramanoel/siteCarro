@@ -57,8 +57,8 @@ export default function CarDetails() {
 
   const handleWhatsAppClick = () => {
     if (car && storeInfo) {
-      // Usar mensagem customizada das configurações ou padrão
-      const messageTemplate = settings.whatsapp_message || "Olá! Tenho interesse no {brand} {model} {year}.";
+      // Usar mensagem customizada das configurações ou padrão formal
+      const messageTemplate = settings.whatsapp_message || "Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?";
       const message = messageTemplate
         .replace("{brand}", car.brand)
         .replace("{model}", car.model)
