@@ -74,11 +74,13 @@ export default function AdminSettings() {
     setSaving(true);
 
     try {
-      await axios.put(`${API}/admin/settings`, formData);
-      toast.success('Configurações salvas com sucesso! Recarregue a página para ver as mudanças.');
+      const response = await axios.put(`${API}/admin/settings`, formData);
+      console.log('Settings saved:', response.data);
+      refreshSettings();
+      toast.success('Configurações salvas com sucesso!');
     } catch (error) {
       console.error("Error saving settings:", error);
-      toast.error('Erro ao salvar configurações');
+      toast.error('Erro ao salvar configurações: ' + (error.response?.data?.detail || error.message));
     } finally {
       setSaving(false);
     }
