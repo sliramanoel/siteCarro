@@ -58,40 +58,40 @@ export const HeroCarousel = ({ cars }) => {
       </div>
 
       {/* Content */}
-      <div className="relative h-full flex items-end pb-20 px-6">
+      <div className="relative h-full flex items-end pb-12 md:pb-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto w-full">
           <div className="max-w-3xl">
             {/* Badge em destaque */}
-            <div className="inline-block mb-4">
-              <div className="bg-red-600 text-white px-6 py-3 rounded-full font-bold text-sm flex items-center gap-2" data-testid="featured-badge">
-                <span className="text-xl">⭐</span>
+            <div className="inline-block mb-2 md:mb-4">
+              <div className="bg-red-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-full font-bold text-xs md:text-sm flex items-center gap-2" data-testid="featured-badge">
+                <span className="text-base md:text-xl">⭐</span>
                 <span>EM DESTAQUE</span>
               </div>
             </div>
 
             {/* Título do carro */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 drop-shadow-2xl" data-testid="carousel-title">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-2 md:mb-4 drop-shadow-2xl leading-tight" data-testid="carousel-title">
               {currentCar.brand} {currentCar.model}
             </h1>
 
             {/* Preço */}
-            <p className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-lg" data-testid="carousel-price">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-6 drop-shadow-lg" data-testid="carousel-price">
               {formatPrice(currentCar.price)}
             </p>
 
-            {/* Descrição */}
-            <p className="text-lg md:text-xl text-white mb-8 max-w-2xl drop-shadow-lg" data-testid="carousel-description">
+            {/* Descrição - oculta em mobile muito pequeno */}
+            <p className="hidden sm:block text-base md:text-lg lg:text-xl text-white mb-4 md:mb-8 max-w-2xl drop-shadow-lg" data-testid="carousel-description">
               {currentCar.description.substring(0, 150)}...
             </p>
 
             {/* Botão CTA */}
             <button
               onClick={() => navigate(`/car/${currentCar.id}`)}
-              className="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-2xl inline-flex items-center gap-3"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 md:px-10 md:py-5 rounded-full font-bold text-sm md:text-lg transition-all transform hover:scale-105 shadow-2xl inline-flex items-center gap-2 md:gap-3"
               data-testid="carousel-cta"
             >
-              <span>Ver Detalhes Completos</span>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <span>Ver Detalhes</span>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-5 md:h-5">
                 <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
