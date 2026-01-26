@@ -30,6 +30,7 @@ export default function AdminCars() {
     description: "",
     seller_id: "",
     status: "available",
+    featured: false,
     images: [],
   });
 
