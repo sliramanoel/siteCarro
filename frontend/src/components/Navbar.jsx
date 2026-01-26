@@ -30,14 +30,6 @@ export const Navbar = () => {
           <Link to="/equipe" className="hover:text-slate-300 transition-colors font-semibold" data-testid="nav-team">
             Equipe
           </Link>
-          <Link
-            to="/admin/login"
-            className="px-6 py-2 rounded-full font-semibold transition-colors"
-            style={{ backgroundColor: settings.primary_color, color: 'white' }}
-            data-testid="nav-admin-login"
-          >
-            Admin
-          </Link>
         </div>
       </div>
     </nav>
