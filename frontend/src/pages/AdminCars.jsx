@@ -77,6 +77,7 @@ export default function AdminCars() {
         description: car.description,
         seller_id: car.seller_id,
         status: car.status,
+        featured: car.featured || false,
         images: car.images || [],
       });
     } else {
