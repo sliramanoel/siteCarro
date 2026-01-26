@@ -72,6 +72,7 @@ class SiteSettingsUpdate(BaseModel):
     facebook_url: Optional[str] = None
     instagram_url: Optional[str] = None
     store_whatsapp: Optional[str] = None
+    imgur_client_id: Optional[str] = None
     whatsapp_message: Optional[str] = None
     contact_title: Optional[str] = None
     contact_description: Optional[str] = None
