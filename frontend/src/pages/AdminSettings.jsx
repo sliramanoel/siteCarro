@@ -26,6 +26,7 @@ export default function AdminSettings() {
     facebook_url: "",
     instagram_url: "",
     store_whatsapp: "",
+    imgur_client_id: "",
     whatsapp_message: "",
     contact_title: "",
     contact_description: "",
