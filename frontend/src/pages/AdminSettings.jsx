@@ -309,6 +309,34 @@ export default function AdminSettings() {
                     </p>
                   </div>
                 </div>
+
+                <div className="mb-6 border-t pt-6">
+                  <Label htmlFor="imgur_client_id" className="font-bold mb-2 block">
+                    Imgur Client ID (Upload de Imagens)
+                  </Label>
+                  <Input
+                    id="imgur_client_id"
+                    value={formData.imgur_client_id}
+                    onChange={(e) => setFormData({ ...formData, imgur_client_id: e.target.value })}
+                    placeholder="abc123xyz456"
+                    className="h-12"
+                    data-testid="imgur-client-id-input"
+                  />
+                  <p className="text-sm text-slate-500 mt-2">
+                    Para fazer upload direto para Imgur. Obtenha gratuitamente em: <a href="https://api.imgur.com/oauth2/addclient" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">api.imgur.com</a>
+                  </p>
+                  <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <p className="text-sm text-blue-900 mb-2">
+                      💡 <strong>Benefícios do Imgur:</strong>
+                    </p>
+                    <ul className="text-sm text-blue-800 list-disc list-inside space-y-1">
+                      <li>Imagens hosped adas externamente (sem problemas de servidor)</li>
+                      <li>URLs públicas que funcionam perfeitamente</li>
+                      <li>Grátis para uso pessoal/comercial</li>
+                      <li>Upload automático ao adicionar veículos</li>
+                    </ul>
+                  </div>
+                </div>
                 
                 <div className="space-y-4 mb-6">
                   <div>
