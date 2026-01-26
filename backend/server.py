@@ -491,6 +491,9 @@ async def get_stats():
 # Include router
 app.include_router(api_router)
 
+# Servir arquivos estáticos (uploads)
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
