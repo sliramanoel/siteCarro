@@ -42,6 +42,7 @@ class SiteSettings(BaseModel):
     email: str = ""
     facebook_url: str = ""
     instagram_url: str = ""
+    store_whatsapp: str = ""
     whatsapp_message: str = "Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?"
     contact_title: str = "Entre em Contato"
     contact_description: str = "Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!"
@@ -56,6 +57,7 @@ class SiteSettingsUpdate(BaseModel):
     email: Optional[str] = None
     facebook_url: Optional[str] = None
     instagram_url: Optional[str] = None
+    store_whatsapp: Optional[str] = None
     whatsapp_message: Optional[str] = None
     contact_title: Optional[str] = None
     contact_description: Optional[str] = None
