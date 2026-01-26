@@ -87,6 +87,7 @@ class Car(BaseModel):
     images: List[str] = []
     seller_id: str
     status: str = "available"
+    featured: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class CarPublic(BaseModel):
