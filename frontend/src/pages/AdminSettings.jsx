@@ -48,6 +48,7 @@ export default function AdminSettings() {
         email: response.data.email || "",
         facebook_url: response.data.facebook_url || "",
         instagram_url: response.data.instagram_url || "",
+        whatsapp_message: response.data.whatsapp_message || "Olá! Tenho interesse no {brand} {model} {year}.",
       });
     } catch (error) {
       console.error("Error fetching settings:", error);
