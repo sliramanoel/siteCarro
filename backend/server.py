@@ -114,6 +114,7 @@ class CarCreate(BaseModel):
     images: List[str] = []
     seller_id: str
     status: str = "available"
+    featured: bool = False
 
 class CarUpdate(BaseModel):
     brand: Optional[str] = None
