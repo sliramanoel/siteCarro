@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { Calendar, Gauge, ChevronLeft, ChevronRight, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
