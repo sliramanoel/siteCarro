@@ -420,6 +420,7 @@ logger = logging.getLogger(__name__)
 @app.on_event("startup")
 async def startup_event():
     await init_admin()
+    await init_site_settings()
     logger.info("Application started successfully")
 
 @app.on_event("shutdown")
