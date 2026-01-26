@@ -203,9 +203,11 @@ export default function CarDetails() {
             </div>
 
             <div className="bg-slate-900 text-white p-6 rounded-xl mb-6" data-testid="contact-info">
-              <h3 className="text-xl font-black mb-4">Entre em Contato</h3>
+              <h3 className="text-xl font-black mb-4">
+                {settings.contact_title || "Entre em Contato"}
+              </h3>
               <p className="text-white/80 mb-4">
-                Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!
+                {settings.contact_description || "Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!"}
               </p>
               <div className="flex items-center gap-2">
                 <Phone size={18} />
