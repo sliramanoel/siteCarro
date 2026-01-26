@@ -184,6 +184,16 @@ async def get_store_info():
     whatsapp = os.environ.get('WHATSAPP_LOJA', '5511999999999')
     return StoreInfo(whatsapp=whatsapp, name="AutoLeilão")
 
+@api_router.get("/settings", response_model=SiteSettings)
+async def get_public_settings():
+    settings = await db.site_settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if not settings:
+        default_settings = SiteSettings()
+        return default_settings
+    if isinstance(settings.get('updated_at'), str):
+        settings['updated_at'] = datetime.fromisoformat(settings['updated_at'])
+    return SiteSettings(**settings)
+
 @api_router.get("/cars", response_model=List[CarPublic])
 async def get_cars(status: Optional[str] = None):
     query = {}
