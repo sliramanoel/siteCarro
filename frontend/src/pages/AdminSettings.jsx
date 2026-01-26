@@ -49,7 +49,7 @@ export default function AdminSettings() {
         email: response.data.email || "",
         facebook_url: response.data.facebook_url || "",
         instagram_url: response.data.instagram_url || "",
-        whatsapp_message: response.data.whatsapp_message || "Olá! Tenho interesse no {brand} {model} {year}.",
+        whatsapp_message: response.data.whatsapp_message || "Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?",
       });
     } catch (error) {
       console.error("Error fetching settings:", error);
