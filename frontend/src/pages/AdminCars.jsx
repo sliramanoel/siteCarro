@@ -405,32 +405,10 @@ export default function AdminCars() {
 
             <div>
               <Label>Imagens</Label>
-              <Button
-                type="button"
-                onClick={handleImageUrlAdd}
-                className="btn-secondary w-full mb-2"
-                data-testid="add-image-button"
-              >
-                <Plus size={16} className="mr-2" />
-                Adicionar URL de Imagem
-              </Button>
-              {formData.images.length > 0 && (
-                <div className="grid grid-cols-3 gap-2">
-                  {formData.images.map((img, idx) => (
-                    <div key={idx} className="relative" data-testid={`image-preview-${idx}`}>
-                      <img src={img} alt={`Preview ${idx + 1}`} className="image-upload-preview" />
-                      <button
-                        type="button"
-                        onClick={() => handleImageRemove(idx)}
-                        className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full hover:bg-red-700"
-                        data-testid={`remove-image-${idx}`}
-                      >
-                        <X size={16} />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <ImageUploader
+                images={formData.images}
+                onImagesChange={handleImagesChange}
+              />
             </div>
 
             <div className="flex gap-4">
