@@ -369,8 +369,13 @@ async def upload_image(file: UploadFile = File(...)):
         # Ler arquivo
         image_data = await file.read()
         
-        # Tentar fazer upload para o Imgur
-        imgur_client_id = os.environ.get('IMGUR_CLIENT_ID', '')
+        # Buscar Client ID do Imgur das configurações
+        settings = await db.site_settings.find_one({"id": "site_settings"}, {"_id": 0})
+        imgur_client_id = settings.get('imgur_client_id') if settings else None
+        
+        # Se não tem nas settings, tentar .env
+        if not imgur_client_id:
+            imgur_client_id = os.environ.get('IMGUR_CLIENT_ID', '')
         
         if imgur_client_id:
             try:
@@ -395,7 +400,7 @@ async def upload_image(file: UploadFile = File(...)):
                         logger.info(f"Imagem enviada para Imgur: {image_url}")
                         return {"url": image_url, "filename": file.filename, "provider": "imgur"}
                 
-                logger.warning(f"Imgur upload falhou: {response.status_code}")
+                logger.warning(f"Imgur upload falhou: {response.status_code} - {response.text[:100]}")
             
             except Exception as imgur_error:
                 logger.error(f"Erro no upload Imgur: {str(imgur_error)}")
