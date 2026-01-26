@@ -37,12 +37,22 @@ class SiteSettings(BaseModel):
     site_name: str = "AutoLeilão"
     logo_url: str = ""
     primary_color: str = "#DC2626"
+    address: str = ""
+    phone: str = ""
+    email: str = ""
+    facebook_url: str = ""
+    instagram_url: str = ""
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class SiteSettingsUpdate(BaseModel):
     site_name: Optional[str] = None
     logo_url: Optional[str] = None
     primary_color: Optional[str] = None
+    address: Optional[str] = None
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    facebook_url: Optional[str] = None
+    instagram_url: Optional[str] = None
 
 class Seller(BaseModel):
     model_config = ConfigDict(extra="ignore")
