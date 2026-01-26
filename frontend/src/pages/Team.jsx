@@ -142,6 +142,7 @@ export default function Team() {
           </Button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
