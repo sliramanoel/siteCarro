@@ -261,6 +261,37 @@ async def admin_login(credentials: AdminLogin):
     token = create_access_token(credentials.username)
     return AdminResponse(token=token, username=credentials.username)
 
+# ============ ADMIN ROUTES - SETTINGS ============
+
+@api_router.get("/admin/settings", response_model=SiteSettings)
+async def get_admin_settings():
+    settings = await db.site_settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if not settings:
+        default_settings = SiteSettings()
+        doc = default_settings.model_dump()
+        doc['updated_at'] = doc['updated_at'].isoformat()
+        await db.site_settings.insert_one(doc)
+        return default_settings
+    if isinstance(settings.get('updated_at'), str):
+        settings['updated_at'] = datetime.fromisoformat(settings['updated_at'])
+    return SiteSettings(**settings)
+
+@api_router.put("/admin/settings", response_model=SiteSettings)
+async def update_settings(settings_data: SiteSettingsUpdate):
+    update_data = {k: v for k, v in settings_data.model_dump().items() if v is not None}
+    if update_data:
+        update_data['updated_at'] = datetime.now(timezone.utc).isoformat()
+        await db.site_settings.update_one(
+            {"id": "site_settings"},
+            {"$set": update_data},
+            upsert=True
+        )
+    
+    updated = await db.site_settings.find_one({"id": "site_settings"}, {"_id": 0})
+    if isinstance(updated.get('updated_at'), str):
+        updated['updated_at'] = datetime.fromisoformat(updated['updated_at'])
+    return SiteSettings(**updated)
+
 # ============ ADMIN ROUTES - SELLERS ============
 
 @api_router.get("/admin/sellers", response_model=List[Seller])
