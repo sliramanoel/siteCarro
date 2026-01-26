@@ -40,7 +40,7 @@ export default function Home() {
 
   const fetchCars = async () => {
     try {
-      const response = await axios.get(`${API}/cars?status=available`);
+      const response = await axios.get(`${API}/cars`);
       setCars(response.data);
       setFilteredCars(response.data);
     } catch (error) {
