@@ -42,7 +42,7 @@ class SiteSettings(BaseModel):
     email: str = ""
     facebook_url: str = ""
     instagram_url: str = ""
-    whatsapp_message: str = "Olá! Tenho interesse no {brand} {model} {year}."
+    whatsapp_message: str = "Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?"
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class SiteSettingsUpdate(BaseModel):
