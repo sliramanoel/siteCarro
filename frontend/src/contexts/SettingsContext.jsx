@@ -16,7 +16,7 @@ export const SettingsProvider = ({ children }) => {
     email: '',
     facebook_url: '',
     instagram_url: '',
-    whatsapp_message: 'Olá! Tenho interesse no {brand} {model} {year}.',
+    whatsapp_message: 'Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?',
   });
   const [loading, setLoading] = useState(true);
 
