@@ -57,7 +57,13 @@ export default function CarDetails() {
 
   const handleWhatsAppClick = () => {
     if (car && storeInfo) {
-      const message = `Olá! Tenho interesse no ${car.brand} ${car.model} ${car.year}.`;
+      // Usar mensagem customizada das configurações ou padrão
+      const messageTemplate = settings.whatsapp_message || "Olá! Tenho interesse no {brand} {model} {year}.";
+      const message = messageTemplate
+        .replace("{brand}", car.brand)
+        .replace("{model}", car.model)
+        .replace("{year}", car.year);
+      
       const whatsappUrl = `https://wa.me/${storeInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     }
