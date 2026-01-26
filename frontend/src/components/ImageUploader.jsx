@@ -37,7 +37,16 @@ export const ImageUploader = ({ images, onImagesChange }) => {
           },
         });
 
-        return `${BACKEND_URL}${response.data.url}`;
+        // Se retornou URL do Imgur, usar diretamente
+        // Se retornou URL local (/uploads/...), montar URL completa
+        const imageUrl = response.data.url;
+        if (imageUrl.startsWith('http')) {
+          // URL completa (Imgur)
+          return imageUrl;
+        } else {
+          // URL relativa (local)
+          return `${BACKEND_URL}${imageUrl}`;
+        }
       });
 
       const uploadedUrls = await Promise.all(uploadPromises);
