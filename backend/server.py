@@ -42,6 +42,7 @@ class SiteSettings(BaseModel):
     email: str = ""
     facebook_url: str = ""
     instagram_url: str = ""
+    whatsapp_message: str = "Olá! Tenho interesse no {brand} {model} {year}."
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class SiteSettingsUpdate(BaseModel):
@@ -53,6 +54,7 @@ class SiteSettingsUpdate(BaseModel):
     email: Optional[str] = None
     facebook_url: Optional[str] = None
     instagram_url: Optional[str] = None
+    whatsapp_message: Optional[str] = None
 
 class Seller(BaseModel):
     model_config = ConfigDict(extra="ignore")
