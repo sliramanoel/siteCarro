@@ -327,6 +327,30 @@ async def admin_login(credentials: AdminLogin):
 
 # ============ ADMIN ROUTES - SETTINGS ============
 
+@api_router.post("/admin/upload-image")
+async def upload_image(file: UploadFile = File(...)):
+    try:
+        # Validar tipo de arquivo
+        allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
+        if file.content_type not in allowed_types:
+            raise HTTPException(status_code=400, detail="Tipo de arquivo não permitido. Use JPEG, PNG ou WEBP")
+        
+        # Gerar nome único para o arquivo
+        file_extension = file.filename.split('.')[-1]
+        unique_filename = f"{uuid.uuid4()}.{file_extension}"
+        file_path = UPLOAD_DIR / unique_filename
+        
+        # Salvar arquivo
+        with file_path.open("wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        
+        # Retornar URL da imagem
+        image_url = f"/uploads/{unique_filename}"
+        return {"url": image_url, "filename": unique_filename}
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao fazer upload: {str(e)}")
+
 @api_router.get("/admin/settings", response_model=SiteSettings)
 async def get_admin_settings():
     settings = await db.site_settings.find_one({"id": "site_settings"}, {"_id": 0})
