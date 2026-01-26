@@ -11,6 +11,11 @@ export const SettingsProvider = ({ children }) => {
     site_name: 'AutoLeilão',
     logo_url: '',
     primary_color: '#DC2626',
+    address: '',
+    phone: '',
+    email: '',
+    facebook_url: '',
+    instagram_url: '',
   });
   const [loading, setLoading] = useState(true);
 
