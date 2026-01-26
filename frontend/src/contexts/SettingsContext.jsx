@@ -17,6 +17,8 @@ export const SettingsProvider = ({ children }) => {
     facebook_url: '',
     instagram_url: '',
     whatsapp_message: 'Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?',
+    contact_title: 'Entre em Contato',
+    contact_description: 'Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!',
   });
   const [loading, setLoading] = useState(true);
 
