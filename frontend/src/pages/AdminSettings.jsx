@@ -408,6 +408,7 @@ export default function AdminSettings() {
                 </Button>
               </div>
             </div>
+            </div>
           </form>
 
           <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
