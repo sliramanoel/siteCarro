@@ -7,19 +7,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 export const SettingsProvider = ({ children }) => {
-  const [settings, setSettings] = useState({
-    site_name: 'AutoLeilão',
-    logo_url: '',
-    primary_color: '#DC2626',
-    address: '',
-    phone: '',
-    email: '',
-    facebook_url: '',
-    instagram_url: '',
-    whatsapp_message: 'Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?',
-    contact_title: 'Entre em Contato',
-    contact_description: 'Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!',
-  });
+  const [settings, setSettings] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,6 +22,20 @@ export const SettingsProvider = ({ children }) => {
       document.documentElement.style.setProperty('--primary-color', response.data.primary_color);
     } catch (error) {
       console.error('Error fetching settings:', error);
+      // Set default values only on error
+      setSettings({
+        site_name: 'AutoLeilão',
+        logo_url: '',
+        primary_color: '#DC2626',
+        address: '',
+        phone: '',
+        email: '',
+        facebook_url: '',
+        instagram_url: '',
+        whatsapp_message: 'Olá! Gostaria de obter mais informações sobre o {brand} {model} de {year}. Está disponível para visita?',
+        contact_title: 'Entre em Contato',
+        contact_description: 'Fale com nossa equipe de vendas pelo WhatsApp e agende uma visita!',
+      });
     } finally {
       setLoading(false);
     }
@@ -42,6 +44,11 @@ export const SettingsProvider = ({ children }) => {
   const refreshSettings = () => {
     fetchSettings();
   };
+
+  // Show nothing until settings are loaded
+  if (loading || !settings) {
+    return null;
+  }
 
   return (
     <SettingsContext.Provider value={{ settings, loading, refreshSettings }}>
