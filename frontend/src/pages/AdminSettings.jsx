@@ -19,6 +19,11 @@ export default function AdminSettings() {
     site_name: "",
     logo_url: "",
     primary_color: "#DC2626",
+    address: "",
+    phone: "",
+    email: "",
+    facebook_url: "",
+    instagram_url: "",
   });
 
   useEffect(() => {
