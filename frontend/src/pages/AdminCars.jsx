@@ -169,19 +169,19 @@ export default function AdminCars() {
   return (
     <div className="flex min-h-screen bg-slate-100">
       <AdminSidebar />
-      <div className="flex-1 p-8">
-        <div className="flex justify-between items-center mb-8">
+      <div className="flex-1 p-4 md:p-8 pt-20 lg:pt-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-4xl font-black text-slate-900 mb-2" data-testid="cars-title">
+            <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-2" data-testid="cars-title">
               Gerenciar Carros
             </h1>
-            <p className="text-slate-600" data-testid="cars-subtitle">
+            <p className="text-slate-600 text-sm md:text-base" data-testid="cars-subtitle">
               {cars.length} veículos cadastrados
             </p>
           </div>
           <Button
             onClick={() => handleOpenModal()}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold rounded-full px-6 py-6"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold rounded-full px-4 py-2 md:px-6 md:py-6 text-sm md:text-base"
             data-testid="add-car-button"
           >
             <Plus size={20} className="mr-2" />
@@ -198,7 +198,63 @@ export default function AdminCars() {
             <p className="text-slate-600 text-lg">Nenhum carro cadastrado.</p>
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden" data-testid="cars-table">
+          <>
+            {/* Mobile Card View */}
+            <div className="lg:hidden space-y-4" data-testid="cars-mobile">
+              {cars.map((car) => (
+                <div key={car.id} className="bg-white rounded-xl shadow-lg p-4" data-testid={`car-card-mobile-${car.id}`}>
+                  <div className="flex gap-4">
+                    <img
+                      src={car.images[0] || 'https://via.placeholder.com/100x60?text=No+Image'}
+                      alt={`${car.brand} ${car.model}`}
+                      className="w-24 h-16 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <h3 className="font-bold text-slate-900">{car.brand} {car.model}</h3>
+                      <p className="text-sm text-slate-600">{car.year} • {new Intl.NumberFormat('pt-BR').format(car.km)} km</p>
+                      <p className="font-bold text-red-600">{formatPrice(car.price)}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t">
+                    <div className="flex gap-2">
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                          car.status === 'available'
+                            ? 'bg-green-100 text-green-800'
+                            : car.status === 'sold'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-yellow-100 text-yellow-800'
+                        }`}
+                      >
+                        {car.status === 'available' ? 'Disponível' : car.status === 'sold' ? 'Vendido' : 'Reservado'}
+                      </span>
+                      {car.featured && (
+                        <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">⭐</span>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => handleOpenModal(car)}
+                        size="sm"
+                        variant="outline"
+                      >
+                        <Edit size={16} />
+                      </Button>
+                      <Button
+                        onClick={() => handleDelete(car.id)}
+                        size="sm"
+                        variant="destructive"
+                      >
+                        <Trash2 size={16} />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden lg:block bg-white rounded-xl shadow-lg overflow-hidden" data-testid="cars-table">
             <table className="w-full">
               <thead className="bg-slate-900 text-white">
                 <tr>
