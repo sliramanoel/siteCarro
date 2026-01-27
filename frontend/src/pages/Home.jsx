@@ -16,6 +16,7 @@ export default function Home() {
   const [featuredCars, setFeaturedCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -25,18 +26,25 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (searchTerm === "") {
-      setFilteredCars(cars);
-    } else {
-      const filtered = cars.filter(
+    let filtered = cars;
+    
+    // Filtrar por status
+    if (statusFilter !== "all") {
+      filtered = filtered.filter(car => car.status === statusFilter);
+    }
+    
+    // Filtrar por termo de busca
+    if (searchTerm !== "") {
+      filtered = filtered.filter(
         (car) =>
           car.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
           car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
           car.year.toString().includes(searchTerm)
       );
-      setFilteredCars(filtered);
     }
-  }, [searchTerm, cars]);
+    
+    setFilteredCars(filtered);
+  }, [searchTerm, statusFilter, cars]);
 
   const fetchCars = async () => {
     try {
