@@ -40,12 +40,12 @@ export default function AdminDashboard() {
   return (
     <div className="flex min-h-screen bg-slate-100">
       <AdminSidebar />
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-4 md:p-8 pt-20 lg:pt-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-black text-slate-900 mb-2" data-testid="dashboard-title">
+          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-2" data-testid="dashboard-title">
             Dashboard
           </h1>
-          <p className="text-slate-600" data-testid="dashboard-subtitle">
+          <p className="text-slate-600 text-sm md:text-base" data-testid="dashboard-subtitle">
             Visão geral do sistema
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function AdminDashboard() {
             <p className="text-slate-600 text-lg">Carregando estatísticas...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-testid="stats-grid">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" data-testid="stats-grid">
             <div className="stat-card p-6 rounded-xl shadow-lg" data-testid="total-cars-stat">
               <div className="flex items-center justify-between mb-4">
                 <Car size={32} />
