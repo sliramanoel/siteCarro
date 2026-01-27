@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Car, Users, LayoutDashboard, LogOut, Settings, Menu, X } from "lucide-react";
 import { toast } from "sonner";
@@ -9,6 +9,11 @@ export const AdminSidebar = () => {
   const navigate = useNavigate();
   const { settings } = useSettings();
   const [isOpen, setIsOpen] = useState(false);
+
+  // Close sidebar on route change (mobile)
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -24,14 +29,10 @@ export const AdminSidebar = () => {
     { path: '/admin/settings', icon: Settings, label: 'Configurações', testId: 'sidebar-settings' },
   ];
 
-  const handleNavClick = () => {
-    setIsOpen(false);
-  };
-
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden admin-sidebar fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-slate-900">
         <div className="flex items-center gap-2">
           <Car size={24} className="text-white" />
           <span className="text-lg font-black text-white">{settings?.site_name || 'Admin'}</span>
@@ -55,9 +56,9 @@ export const AdminSidebar = () => {
 
       {/* Sidebar */}
       <div 
-        className={`admin-sidebar fixed lg:relative z-50 h-full w-64 p-6 text-white transform transition-transform duration-300 ease-in-out ${
+        className={`fixed lg:relative z-50 h-full w-64 p-6 text-white bg-slate-900 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        }`}
+        } lg:min-h-screen`}
         data-testid="admin-sidebar"
       >
         <div className="mb-12 mt-12 lg:mt-0">
@@ -76,7 +77,6 @@ export const AdminSidebar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                onClick={handleNavClick}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive
                     ? 'bg-red-600 text-white'
