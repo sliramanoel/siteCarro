@@ -138,58 +138,92 @@ export default function AdminSellers() {
             <p className="text-slate-600 text-lg">Nenhum vendedor cadastrado.</p>
           </div>
         ) : (
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden" data-testid="sellers-table">
-            <table className="w-full">
-              <thead className="bg-slate-900 text-white">
-                <tr>
-                  <th className="px-6 py-4 text-left font-bold">Nome</th>
-                  <th className="px-6 py-4 text-left font-bold">Telefone</th>
-                  <th className="px-6 py-4 text-left font-bold">WhatsApp</th>
-                  <th className="px-6 py-4 text-left font-bold">Email</th>
-                  <th className="px-6 py-4 text-left font-bold">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sellers.map((seller) => (
-                  <tr key={seller.id} className="border-b hover:bg-slate-50" data-testid={`seller-row-${seller.id}`}>
-                    <td className="px-6 py-4 font-semibold">{seller.name}</td>
-                    <td className="px-6 py-4">{seller.phone}</td>
-                    <td className="px-6 py-4">{seller.whatsapp}</td>
-                    <td className="px-6 py-4">{seller.email || '-'}</td>
-                    <td className="px-6 py-4">
-                      <div className="flex gap-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleOpenModal(seller)}
-                          data-testid={`edit-seller-${seller.id}`}
-                        >
-                          <Edit size={16} />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDelete(seller.id)}
-                          className="text-red-600 hover:text-red-700"
-                          data-testid={`delete-seller-${seller.id}`}
-                        >
-                          <Trash2 size={16} />
-                        </Button>
-                      </div>
-                    </td>
+          <>
+            {/* Mobile Card View */}
+            <div className="lg:hidden space-y-4" data-testid="sellers-mobile">
+              {sellers.map((seller) => (
+                <div key={seller.id} className="bg-white rounded-xl shadow-lg p-4" data-testid={`seller-card-mobile-${seller.id}`}>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="font-bold text-slate-900">{seller.name}</h3>
+                      <p className="text-sm text-slate-600">{seller.phone}</p>
+                      {seller.email && <p className="text-sm text-slate-500">{seller.email}</p>}
+                    </div>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => handleOpenModal(seller)}
+                        size="sm"
+                        variant="outline"
+                      >
+                        <Edit size={16} />
+                      </Button>
+                      <Button
+                        onClick={() => handleDelete(seller.id)}
+                        size="sm"
+                        variant="destructive"
+                      >
+                        <Trash2 size={16} />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden lg:block bg-white rounded-xl shadow-lg overflow-hidden" data-testid="sellers-table">
+              <table className="w-full">
+                <thead className="bg-slate-900 text-white">
+                  <tr>
+                    <th className="px-6 py-4 text-left font-bold">Nome</th>
+                    <th className="px-6 py-4 text-left font-bold">Telefone</th>
+                    <th className="px-6 py-4 text-left font-bold">WhatsApp</th>
+                    <th className="px-6 py-4 text-left font-bold">Email</th>
+                    <th className="px-6 py-4 text-left font-bold">Ações</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {sellers.map((seller) => (
+                    <tr key={seller.id} className="border-b hover:bg-slate-50" data-testid={`seller-row-${seller.id}`}>
+                      <td className="px-6 py-4 font-semibold">{seller.name}</td>
+                      <td className="px-6 py-4">{seller.phone}</td>
+                      <td className="px-6 py-4">{seller.whatsapp}</td>
+                      <td className="px-6 py-4">{seller.email || '-'}</td>
+                      <td className="px-6 py-4">
+                        <div className="flex gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleOpenModal(seller)}
+                            data-testid={`edit-seller-${seller.id}`}
+                          >
+                            <Edit size={16} />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleDelete(seller.id)}
+                            className="text-red-600 hover:text-red-700"
+                            data-testid={`delete-seller-${seller.id}`}
+                          >
+                            <Trash2 size={16} />
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </div>
 
       {/* Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="max-w-md" data-testid="seller-modal" aria-describedby="seller-modal-description">
+        <DialogContent className="max-w-md mx-4" data-testid="seller-modal" aria-describedby="seller-modal-description">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-black">
+            <DialogTitle className="text-xl md:text-2xl font-black">
               {editingSeller ? 'Editar Vendedor' : 'Adicionar Vendedor'}
             </DialogTitle>
             <p id="seller-modal-description" className="sr-only">
