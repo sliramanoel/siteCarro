@@ -56,68 +56,68 @@ export default function AdminDashboard() {
           </div>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" data-testid="stats-grid">
-            <div className="stat-card p-6 rounded-xl shadow-lg" data-testid="total-cars-stat">
-              <div className="flex items-center justify-between mb-4">
-                <Car size={32} />
-                <TrendingUp size={20} className="text-green-400" />
+            <div className="stat-card p-4 md:p-6 rounded-xl shadow-lg" data-testid="total-cars-stat">
+              <div className="flex items-center justify-between mb-2 md:mb-4">
+                <Car size={24} className="md:w-8 md:h-8" />
+                <TrendingUp size={16} className="md:w-5 md:h-5 text-green-400" />
               </div>
-              <p className="text-sm text-white/70 mb-1">Total de Carros</p>
-              <p className="text-4xl font-black">{stats.total_cars}</p>
+              <p className="text-xs md:text-sm text-white/70 mb-1">Total de Carros</p>
+              <p className="text-2xl md:text-4xl font-black">{stats.total_cars}</p>
             </div>
 
-            <div className="stat-card p-6 rounded-xl shadow-lg" data-testid="available-cars-stat">
-              <div className="flex items-center justify-between mb-4">
-                <ShoppingCart size={32} />
-                <TrendingUp size={20} className="text-green-400" />
+            <div className="stat-card p-4 md:p-6 rounded-xl shadow-lg" data-testid="available-cars-stat">
+              <div className="flex items-center justify-between mb-2 md:mb-4">
+                <ShoppingCart size={24} className="md:w-8 md:h-8" />
+                <TrendingUp size={16} className="md:w-5 md:h-5 text-green-400" />
               </div>
-              <p className="text-sm text-white/70 mb-1">Disponíveis</p>
-              <p className="text-4xl font-black">{stats.available_cars}</p>
+              <p className="text-xs md:text-sm text-white/70 mb-1">Disponíveis</p>
+              <p className="text-2xl md:text-4xl font-black">{stats.available_cars}</p>
             </div>
 
-            <div className="stat-card p-6 rounded-xl shadow-lg" data-testid="sold-cars-stat">
-              <div className="flex items-center justify-between mb-4">
-                <Car size={32} />
-                <TrendingUp size={20} className="text-red-400" />
+            <div className="stat-card p-4 md:p-6 rounded-xl shadow-lg" data-testid="sold-cars-stat">
+              <div className="flex items-center justify-between mb-2 md:mb-4">
+                <Car size={24} className="md:w-8 md:h-8" />
+                <TrendingUp size={16} className="md:w-5 md:h-5 text-red-400" />
               </div>
-              <p className="text-sm text-white/70 mb-1">Vendidos</p>
-              <p className="text-4xl font-black">{stats.sold_cars}</p>
+              <p className="text-xs md:text-sm text-white/70 mb-1">Vendidos</p>
+              <p className="text-2xl md:text-4xl font-black">{stats.sold_cars}</p>
             </div>
 
-            <div className="stat-card p-6 rounded-xl shadow-lg" data-testid="total-sellers-stat">
-              <div className="flex items-center justify-between mb-4">
-                <Users size={32} />
-                <TrendingUp size={20} className="text-blue-400" />
+            <div className="stat-card p-4 md:p-6 rounded-xl shadow-lg" data-testid="total-sellers-stat">
+              <div className="flex items-center justify-between mb-2 md:mb-4">
+                <Users size={24} className="md:w-8 md:h-8" />
+                <TrendingUp size={16} className="md:w-5 md:h-5 text-blue-400" />
               </div>
-              <p className="text-sm text-white/70 mb-1">Vendedores</p>
-              <p className="text-4xl font-black">{stats.total_sellers}</p>
+              <p className="text-xs md:text-sm text-white/70 mb-1">Vendedores</p>
+              <p className="text-2xl md:text-4xl font-black">{stats.total_sellers}</p>
             </div>
           </div>
         )}
 
-        <div className="mt-12 bg-white rounded-xl shadow-lg p-8">
-          <h2 className="text-2xl font-black text-slate-900 mb-4" data-testid="welcome-title">
+        <div className="mt-8 md:mt-12 bg-white rounded-xl shadow-lg p-4 md:p-8">
+          <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-4" data-testid="welcome-title">
             Bem-vindo ao Painel Administrativo
           </h2>
-          <p className="text-slate-600 mb-6">
+          <p className="text-slate-600 mb-6 text-sm md:text-base">
             Utilize o menu lateral para gerenciar carros e vendedores do sistema.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <button
               onClick={() => navigate('/admin/cars')}
-              className="btn-primary px-6 py-4 rounded-lg font-semibold text-left"
+              className="btn-primary px-4 md:px-6 py-4 rounded-lg font-semibold text-left"
               data-testid="manage-cars-button"
             >
               <Car size={24} className="mb-2" />
-              <p className="font-bold text-lg">Gerenciar Carros</p>
-              <p className="text-sm text-white/70">Adicionar, editar ou remover veículos</p>
+              <p className="font-bold text-base md:text-lg">Gerenciar Carros</p>
+              <p className="text-xs md:text-sm text-white/70">Adicionar, editar ou remover veículos</p>
             </button>
             <button
               onClick={() => navigate('/admin/sellers')}
-              className="btn-primary px-6 py-4 rounded-lg font-semibold text-left"
+              className="btn-primary px-4 md:px-6 py-4 rounded-lg font-semibold text-left"
               data-testid="manage-sellers-button"
             >
               <Users size={24} className="mb-2" />
-              <p className="font-bold text-lg">Gerenciar Vendedores</p>
+              <p className="font-bold text-base md:text-lg">Gerenciar Vendedores</p>
               <p className="text-sm text-white/70">Adicionar, editar ou remover vendedores</p>
             </button>
           </div>
