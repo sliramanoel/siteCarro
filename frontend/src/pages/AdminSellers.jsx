@@ -109,19 +109,19 @@ export default function AdminSellers() {
   return (
     <div className="flex min-h-screen bg-slate-100">
       <AdminSidebar />
-      <div className="flex-1 p-8">
-        <div className="flex justify-between items-center mb-8">
+      <div className="flex-1 p-4 md:p-8 pt-20 lg:pt-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-4xl font-black text-slate-900 mb-2" data-testid="sellers-title">
+            <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-2" data-testid="sellers-title">
               Gerenciar Vendedores
             </h1>
-            <p className="text-slate-600" data-testid="sellers-subtitle">
+            <p className="text-slate-600 text-sm md:text-base" data-testid="sellers-subtitle">
               {sellers.length} vendedores cadastrados
             </p>
           </div>
           <Button
             onClick={() => handleOpenModal()}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold rounded-full px-6 py-6"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold rounded-full px-4 py-2 md:px-6 md:py-6 text-sm md:text-base"
             data-testid="add-seller-button"
           >
             <Plus size={20} className="mr-2" />
