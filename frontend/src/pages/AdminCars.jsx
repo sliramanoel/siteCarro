@@ -329,15 +329,16 @@ export default function AdminCars() {
                 ))}
               </tbody>
             </table>
-          </div>
+            </div>
+          </>
         )}
       </div>
 
       {/* Modal */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid="car-modal" aria-describedby="car-modal-description">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4" data-testid="car-modal" aria-describedby="car-modal-description">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-black">
+            <DialogTitle className="text-xl md:text-2xl font-black">
               {editingCar ? 'Editar Carro' : 'Adicionar Carro'}
             </DialogTitle>
             <p id="car-modal-description" className="sr-only">
@@ -345,7 +346,7 @@ export default function AdminCars() {
             </p>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="brand">Marca</Label>
                 <Input
