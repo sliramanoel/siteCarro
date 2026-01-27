@@ -95,15 +95,63 @@ export default function Home() {
 
       {/* Cars Catalog */}
       <div className="max-w-7xl mx-auto px-6 py-24" id="catalog-section">
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
             <h2 className="text-4xl font-black text-slate-900 mb-2" data-testid="catalog-title">
               Catálogo de Veículos
             </h2>
             <p className="text-slate-600" data-testid="catalog-subtitle">
-              {filteredCars.length} veículo{filteredCars.length !== 1 ? 's' : ''} no catálogo
+              {filteredCars.length} veículo{filteredCars.length !== 1 ? 's' : ''} {statusFilter === 'all' ? 'no catálogo' : statusFilter === 'available' ? 'disponíveis' : statusFilter === 'reserved' ? 'reservados' : 'vendidos'}
             </p>
           </div>
+        </div>
+
+        {/* Status Filter Buttons */}
+        <div className="flex flex-wrap gap-3 mb-8" data-testid="status-filter">
+          <button
+            onClick={() => setStatusFilter("all")}
+            className={`px-5 py-2 rounded-full font-semibold transition-all ${
+              statusFilter === "all"
+                ? "bg-slate-900 text-white"
+                : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+            }`}
+            data-testid="filter-all"
+          >
+            Todos
+          </button>
+          <button
+            onClick={() => setStatusFilter("available")}
+            className={`px-5 py-2 rounded-full font-semibold transition-all ${
+              statusFilter === "available"
+                ? "bg-green-600 text-white"
+                : "bg-green-100 text-green-700 hover:bg-green-200"
+            }`}
+            data-testid="filter-available"
+          >
+            Disponíveis
+          </button>
+          <button
+            onClick={() => setStatusFilter("reserved")}
+            className={`px-5 py-2 rounded-full font-semibold transition-all ${
+              statusFilter === "reserved"
+                ? "bg-yellow-500 text-black"
+                : "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
+            }`}
+            data-testid="filter-reserved"
+          >
+            Reservados
+          </button>
+          <button
+            onClick={() => setStatusFilter("sold")}
+            className={`px-5 py-2 rounded-full font-semibold transition-all ${
+              statusFilter === "sold"
+                ? "bg-red-600 text-white"
+                : "bg-red-100 text-red-700 hover:bg-red-200"
+            }`}
+            data-testid="filter-sold"
+          >
+            Vendidos
+          </button>
         </div>
 
         {loading ? (
