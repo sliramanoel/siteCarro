@@ -102,20 +102,20 @@ export default function AdminSettings() {
   return (
     <div className="flex min-h-screen bg-slate-100">
       <AdminSidebar />
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-4 md:p-8 pt-20 lg:pt-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-black text-slate-900 mb-2" data-testid="settings-title">
+          <h1 className="text-2xl md:text-4xl font-black text-slate-900 mb-2" data-testid="settings-title">
             Configurações do Site
           </h1>
-          <p className="text-slate-600" data-testid="settings-subtitle">
+          <p className="text-slate-600 text-sm md:text-base" data-testid="settings-subtitle">
             Personalize o nome, logo e cores do seu site
           </p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8 max-w-3xl">
+        <div className="bg-white rounded-xl shadow-lg p-4 md:p-8 max-w-3xl">
           <form onSubmit={handleSubmit} className="space-y-6" data-testid="settings-form">
             <div>
-              <Label htmlFor="site_name" className="text-lg font-bold mb-2 block">
+              <Label htmlFor="site_name" className="text-base md:text-lg font-bold mb-2 block">
                 Nome do Site
               </Label>
               <Input
