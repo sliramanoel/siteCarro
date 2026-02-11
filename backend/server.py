@@ -159,6 +159,10 @@ class AdminResponse(BaseModel):
     token: str
     username: str
 
+class PasswordChange(BaseModel):
+    current_password: str
+    new_password: str
+
 class CarWithSeller(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str
