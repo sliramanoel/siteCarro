@@ -360,6 +360,32 @@ async def admin_login(credentials: AdminLogin):
     token = create_access_token(credentials.username)
     return AdminResponse(token=token, username=credentials.username)
 
+@api_router.put("/admin/change-password")
+async def change_password(password_data: PasswordChange):
+    # Buscar admin atual (assumindo único admin)
+    admin = await db.admins.find_one({"username": "admin"})
+    if not admin:
+        raise HTTPException(status_code=404, detail="Admin não encontrado")
+    
+    # Verificar senha atual
+    if not bcrypt.checkpw(password_data.current_password.encode('utf-8'), admin['password'].encode('utf-8')):
+        raise HTTPException(status_code=401, detail="Senha atual incorreta")
+    
+    # Validar nova senha
+    if len(password_data.new_password) < 6:
+        raise HTTPException(status_code=400, detail="A nova senha deve ter pelo menos 6 caracteres")
+    
+    # Gerar hash da nova senha
+    new_hash = bcrypt.hashpw(password_data.new_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    
+    # Atualizar no banco
+    await db.admins.update_one(
+        {"username": "admin"},
+        {"$set": {"password": new_hash}}
+    )
+    
+    return {"message": "Senha alterada com sucesso"}
+
 # ============ ADMIN ROUTES - SETTINGS ============
 
 @api_router.post("/admin/upload-image")
