@@ -422,6 +422,101 @@ export default function AdminSettings() {
             </div>
           </form>
 
+          {/* Seção de Alterar Senha */}
+          <div className="mt-8 border-t pt-8">
+            <h2 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-2">
+              <Lock size={24} />
+              Alterar Senha de Acesso
+            </h2>
+            <div className="space-y-4 max-w-md">
+              <div>
+                <Label htmlFor="current_password" className="text-lg font-bold mb-2 block">
+                  Senha Atual
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="current_password"
+                    type={showPasswords.current ? "text" : "password"}
+                    value={passwordData.current_password}
+                    onChange={(e) => setPasswordData({ ...passwordData, current_password: e.target.value })}
+                    placeholder="Digite sua senha atual"
+                    className="h-12 pr-12"
+                    data-testid="current-password-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswords(prev => ({ ...prev, current: !prev.current }))}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                  >
+                    {showPasswords.current ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="new_password" className="text-lg font-bold mb-2 block">
+                  Nova Senha
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="new_password"
+                    type={showPasswords.new ? "text" : "password"}
+                    value={passwordData.new_password}
+                    onChange={(e) => setPasswordData({ ...passwordData, new_password: e.target.value })}
+                    placeholder="Digite a nova senha"
+                    className="h-12 pr-12"
+                    data-testid="new-password-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswords(prev => ({ ...prev, new: !prev.new }))}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                  >
+                    {showPasswords.new ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+                <p className="text-sm text-slate-500 mt-1">Mínimo de 6 caracteres</p>
+              </div>
+
+              <div>
+                <Label htmlFor="confirm_password" className="text-lg font-bold mb-2 block">
+                  Confirmar Nova Senha
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="confirm_password"
+                    type={showPasswords.confirm ? "text" : "password"}
+                    value={passwordData.confirm_password}
+                    onChange={(e) => setPasswordData({ ...passwordData, confirm_password: e.target.value })}
+                    placeholder="Confirme a nova senha"
+                    className="h-12 pr-12"
+                    data-testid="confirm-password-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswords(prev => ({ ...prev, confirm: !prev.confirm }))}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                  >
+                    {showPasswords.confirm ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="pt-4">
+                <Button
+                  type="button"
+                  onClick={handlePasswordChange}
+                  disabled={savingPassword}
+                  className="bg-slate-800 hover:bg-slate-900 text-white px-6 py-4 rounded-full font-bold flex items-center gap-2"
+                  data-testid="change-password-button"
+                >
+                  <Lock size={18} />
+                  {savingPassword ? 'Alterando...' : 'Alterar Senha'}
+                </Button>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
             <h3 className="font-bold text-blue-900 mb-2">💡 Dica</h3>
             <p className="text-blue-800 text-sm">
