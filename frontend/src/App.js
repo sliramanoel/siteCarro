@@ -9,6 +9,7 @@ import AdminCars from "@/pages/AdminCars";
 import AdminSellers from "@/pages/AdminSellers";
 import AdminSettings from "@/pages/AdminSettings";
 import AdminPassword from "@/pages/AdminPassword";
+import AdminImport from "@/pages/AdminImport";
 import { Toaster } from "@/components/ui/sonner";
 import { SettingsProvider } from "@/contexts/SettingsContext";
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/admin/sellers" element={<AdminSellers />} />
             <Route path="/admin/settings" element={<AdminSettings />} />
             <Route path="/admin/password" element={<AdminPassword />} />
+            <Route path="/admin/import" element={<AdminImport />} />
           </Routes>
         </BrowserRouter>
         <Toaster position="top-right" />
