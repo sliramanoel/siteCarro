@@ -369,7 +369,7 @@ export default function AdminCars() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="year">Ano</Label>
                 <Input
@@ -392,21 +392,20 @@ export default function AdminCars() {
                   data-testid="km-input"
                 />
               </div>
-            </div>
-
-            <div>
-              <Label htmlFor="price">Valor (R$)</Label>
-              <Input
-                id="price"
-                type="number"
-                step="0.01"
-                min="0"
-                value={formData.price}
-                onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })}
-                placeholder="Ex: 150000.00"
-                required
-                data-testid="price-input"
-              />
+              <div>
+                <Label htmlFor="price">Valor (R$)</Label>
+                <Input
+                  id="price"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value={formData.price}
+                  onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })}
+                  placeholder="150000.00"
+                  required
+                  data-testid="price-input"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
