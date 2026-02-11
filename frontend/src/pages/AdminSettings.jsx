@@ -97,6 +97,55 @@ export default function AdminSettings() {
     }
   };
 
+  const handlePasswordChange = async () => {
+    if (passwordData.new_password.length < 6) {
+      toast.error("A nova senha deve ter pelo menos 6 caracteres");
+      return;
+    }
+
+    if (passwordData.new_password !== passwordData.confirm_password) {
+      toast.error("As senhas não coincidem");
+      return;
+    }
+
+    if (!passwordData.current_password) {
+      toast.error("Digite sua senha atual");
+      return;
+    }
+
+    setSavingPassword(true);
+
+    try {
+      const token = localStorage.getItem("admin_token");
+      await axios.put(
+        `${API}/admin/change-password`,
+        {
+          current_password: passwordData.current_password,
+          new_password: passwordData.new_password
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` }
+        }
+      );
+      
+      toast.success("Senha alterada com sucesso!");
+      setPasswordData({
+        current_password: "",
+        new_password: "",
+        confirm_password: ""
+      });
+    } catch (error) {
+      console.error("Error changing password:", error);
+      if (error.response?.status === 401) {
+        toast.error("Senha atual incorreta");
+      } else {
+        toast.error("Erro ao alterar senha: " + (error.response?.data?.detail || error.message));
+      }
+    } finally {
+      setSavingPassword(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex min-h-screen bg-slate-100">
