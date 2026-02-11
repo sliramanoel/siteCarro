@@ -196,21 +196,50 @@ install_mongodb() {
     
     # Detectar versão do Ubuntu/Debian
     . /etc/os-release
+    UBUNTU_CODENAME=$(lsb_release -cs)
     
+    # Ubuntu 24.04 (noble) não tem suporte oficial para MongoDB 7.0
+    # Usar jammy (22.04) como fallback para noble
+    if [ "$UBUNTU_CODENAME" = "noble" ]; then
+        print_warning "Ubuntu 24.04 detectado. Usando repositório compatível..."
+        UBUNTU_CODENAME="jammy"
+    fi
+    
+    # Importar chave GPG do MongoDB
     curl -fsSL https://pgp.mongodb.com/server-7.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg 2>/dev/null
     
     if [ "$ID" = "ubuntu" ]; then
-        echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list >/dev/null
+        echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu ${UBUNTU_CODENAME}/mongodb-org/7.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list >/dev/null
     else
-        echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/debian $(lsb_release -cs)/mongodb-org/7.0 main" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list >/dev/null
+        # Para Debian
+        DEBIAN_CODENAME=$(lsb_release -cs)
+        if [ "$DEBIAN_CODENAME" = "trixie" ] || [ "$DEBIAN_CODENAME" = "sid" ]; then
+            DEBIAN_CODENAME="bookworm"
+        fi
+        echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/debian ${DEBIAN_CODENAME}/mongodb-org/7.0 main" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list >/dev/null
     fi
     
     apt-get update -qq
     apt-get install -y -qq mongodb-org
     
+    # Iniciar e habilitar MongoDB
     systemctl start mongod
     systemctl enable mongod >/dev/null 2>&1
-    print_success "MongoDB instalado e rodando"
+    
+    # Verificar se MongoDB está rodando
+    sleep 2
+    if systemctl is-active --quiet mongod; then
+        print_success "MongoDB instalado e rodando"
+    else
+        print_warning "MongoDB instalado. Tentando iniciar novamente..."
+        systemctl start mongod
+        sleep 2
+        if systemctl is-active --quiet mongod; then
+            print_success "MongoDB iniciado com sucesso"
+        else
+            print_error "Problema ao iniciar MongoDB. Verifique: sudo systemctl status mongod"
+        fi
+    fi
 }
 
 # Instalar Nginx
