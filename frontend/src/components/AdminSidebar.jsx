@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Car, Users, LayoutDashboard, LogOut, Settings, Menu, X, Lock } from "lucide-react";
+import { Car, Users, LayoutDashboard, LogOut, Settings, Menu, X } from "lucide-react";
 import { toast } from "sonner";
 import { useSettings } from "@/contexts/SettingsContext";
 
