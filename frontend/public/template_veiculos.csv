@@ -1,0 +1,6 @@
+marca,modelo,ano,km,preco,descricao,status,destaque,imagem1,imagem2,imagem3
+Toyota,Corolla,2022,35000,125000.00,Veículo em excelente estado. Único dono. IPVA pago.,available,false,https://exemplo.com/foto1.jpg,https://exemplo.com/foto2.jpg,
+Honda,Civic,2021,42000,118000.00,Completo com bancos em couro. Revisões na concessionária.,available,true,https://exemplo.com/foto1.jpg,,
+Volkswagen,Virtus,2023,15000,98000.00,Seminovo com garantia de fábrica. Documento ok.,available,false,https://exemplo.com/foto1.jpg,,
+Hyundai,HB20,2020,55000,62000.00,Econômico e bem conservado. Pneus novos.,reserved,false,https://exemplo.com/foto1.jpg,,
+Chevrolet,Onix,2019,78000,52000.00,Carro popular com baixa quilometragem para o ano.,sold,false,https://exemplo.com/foto1.jpg,,
