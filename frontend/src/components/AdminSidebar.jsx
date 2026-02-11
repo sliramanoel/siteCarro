@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Car, Users, LayoutDashboard, LogOut, Settings, Menu, X } from "lucide-react";
+import { Car, Users, LayoutDashboard, LogOut, Settings, Menu, X, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { useSettings } from "@/contexts/SettingsContext";
 
@@ -25,6 +25,7 @@ export const AdminSidebar = () => {
   const menuItems = [
     { path: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard', testId: 'sidebar-dashboard' },
     { path: '/admin/cars', icon: Car, label: 'Carros', testId: 'sidebar-cars' },
+    { path: '/admin/import', icon: Upload, label: 'Importar', testId: 'sidebar-import' },
     { path: '/admin/sellers', icon: Users, label: 'Vendedores', testId: 'sidebar-sellers' },
     { path: '/admin/settings', icon: Settings, label: 'Configurações', testId: 'sidebar-settings' },
   ];
